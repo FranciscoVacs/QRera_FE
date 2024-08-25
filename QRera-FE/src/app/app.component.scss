@@ -1,0 +1,82 @@
+
+ul {
+  list-style: none;
+  padding: 0px;
+  margin: 0px;
+}
+
+a {
+  text-decoration: none;
+  color: black
+}
+
+h1 {
+  float: left;
+  margin: 0 1rem;
+}
+
+li {
+  float: left;
+  margin: 0 7rem;
+}
+
+nav {
+  height: 5rem;
+  background-color: pink;
+}
+
+#logo {
+  width: 4.8rem;
+  float: left;
+}
+
+#logbuttons {
+  width: 0 3rem;
+}
+
+#logbuttons button {
+  float: right;
+}
+
+#topbar {
+  padding-top: 2rem;
+}
+
+#events {
+  margin: 0 auto;
+  width: 70%;
+  background-color: white;
+}
+
+#footer {
+  clear: both;
+  background-color: pink;
+  height: 5.25rem;
+}
+
+#sthd {
+  margin: 0;
+}
+
+#flogo {
+  width: 4.8rem;
+}
+
+footer section {
+  float: right;
+}
+
+article.event {
+  margin: 1rem 1%;
+  width: 45%;
+  height: 20rem;
+  border: .15rem solid black;
+  border-radius: .6rem;
+  float: left;
+}
+
+hr {
+  margin: 0;
+}
+
+article.event:hover {}
