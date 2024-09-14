@@ -17,7 +17,7 @@ h1 {
 
 li {
   float: left;
-  margin: 0 7rem;
+  margin: 0 6.5rem;
 }
 
 nav {
@@ -66,7 +66,7 @@ footer section {
   float: right;
 }
 
-article.event {
+app-event.event {
   margin: 1rem 1%;
   width: 45%;
   height: 20rem;
@@ -79,4 +79,16 @@ hr {
   margin: 0;
 }
 
-article.event:hover {}
+.button {
+  margin: 0 .5rem;
+}
+app-event.event:hover {
+  animation-name: zoomin;
+  animation-duration: .75s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes zoomin {
+  from { width: 45%; height: 20rem;}
+  to { width: 50%; height: 22rem;}
+}
