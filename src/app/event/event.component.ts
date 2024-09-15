@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { Event } from '@angular/router';
 
 @Component({
   selector: 'app-event',
@@ -8,5 +9,7 @@ import { Component } from '@angular/core';
   styleUrl: './event.component.scss'
 })
 export class EventComponent {
- eventName = 'Nombre!'
+ @Input() eventInput: any;
+
+
 }

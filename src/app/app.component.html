@@ -5,10 +5,10 @@
   <div id="topbar">
     <h1 >HisLine </h1>
     <ul>
-      <li><a class="navButton" href=""> ButtonOne </a></li>
-      <li><a class="navButton" href=""> ButtonTwo </a></li>
-      <li><a class="navButton" href=""> ButtonThree </a></li>
-      <li><a class="navButton" href=""> ButtonFour </a></li>
+      <li><a class="navButton" href=""> Eventos </a></li>
+      <li><a class="navButton" href=""> Localidades </a></li>
+      <li><a class="navButton" href=""> Contacto </a></li>
+      <li><a class="navButton" href=""> Album de fotos </a></li>
     </ul>
     <div id="logbuttons">
       <button class="button"> <a> Create Account </a> </button>
@@ -18,16 +18,8 @@
   <hr style="clear: both;" >
 </nav>
 <section id="events">
-  <app-event class="event">Event1</app-event>
-  <app-event class="event">Event2</app-event>
-  <app-event class="event">Event3</app-event>
-  <app-event class="event">Event4</app-event>
-  <app-event class="event">Event5</app-event>
-  <app-event class="event">Event6</app-event>
-  <app-event class="event">Event7</app-event>
-  <app-event class="event">Event8</app-event>
-  <app-event class="event">Event9</app-event>
-  <app-event class="event">Event10</app-event>
+  <app-event [eventInput]="event" *ngFor="let event of eventList; index as i; last as isLast; odd as isOdd" class="event">Event1</app-event>
+
 
 </section>
 <hr style="clear: both;">
