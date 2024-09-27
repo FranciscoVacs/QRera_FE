@@ -75,6 +75,14 @@ app-event.event {
   float: left;
 }
 
+app-event.lastEvent {
+  margin: 1rem 25%;
+  width: 45%;
+  height: 33rem;
+  border: .15rem solid black;
+  border-radius: .6rem;
+}
+
 hr {
   margin: 0;
 }

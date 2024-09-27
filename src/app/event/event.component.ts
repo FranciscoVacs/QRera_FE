@@ -10,6 +10,5 @@ import { Event } from '@angular/router';
 })
 export class EventComponent {
  @Input() eventInput: any;
-
-
+ 
 }
