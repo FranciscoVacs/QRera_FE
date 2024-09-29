@@ -11,8 +11,8 @@
       <li><a class="navButton" href=""> Album de fotos </a></li>
     </ul>
     <div id="logbuttons">
-      <button class="button" (click)="onclick()"><a>Create Account</a></button>
-      <button (click)="onclicked()"><a>Log in</a></button>
+      <button class="button"><a>Create Account</a></button>
+      <button><a>Log in</a></button>
     </div>
   </div>
   <hr style="clear: both;">
@@ -20,7 +20,7 @@
 <section id="events">
   <app-event-preview [eventInput]="event" *ngFor="let event of eventList; index as i; last as isLast; even as isEven"
     [class.lastEvent]="isLast && isEven" class="event"></app-event-preview>
-  <p> {{eventList | json}} </p>
+<!--  <p> {{eventList | json}} </p> -->
 </section>
 <hr style="clear: both;">
 <footer id="footer">
