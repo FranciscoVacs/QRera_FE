@@ -20,9 +20,15 @@ export class HomeComponent {
   variable: any;
   eventsLoaded: boolean = false;
   eventList: any = [];
+
     onClicked() {
-        this.apiservice.postEvent().subscribe(response => this.variable = response)
+        this.apiservice.getEvents().subscribe(response => this.variable = response) 
     }
+
+    onClickedGET(){
+      this.loadEvents();
+    }
+
     ngOnInit(){
       this.loadEvents();
     }

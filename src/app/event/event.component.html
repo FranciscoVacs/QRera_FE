@@ -1,6 +1,6 @@
 <p>Nombre: {{event.event_name}}</p>
 <p>Descripcion: {{event.event_description}}</p>
-<p> Hora inicio: {{event.begin_datetime}} Hora fin: {{event.finish_datetime}}</p>
+<p> Inicio: {{event.begin_datetime}} Fin: {{event.finish_datetime}}</p>
 <p>Edad minima: {{event.min_age}}</p>
 <p>Ubicacion: {{event.location}}</p>
 <hr><hr><hr><hr><hr>
@@ -11,11 +11,9 @@
 <p>compra de entradas</p>
 <label>
   <select>
-    <option>{{event.ticketType[0].ticketType_name}}</option>
-    <option>{{event.ticketType[1].ticketType_name}}</option>
+    <option (click)="updateState()" *ngFor="let tType of ticketTypes; index as i">{{ticketTypes[i].ticketType_name}}</option>
   </select>
 </label>
-<button (click)="updateState()">Elegir tipo</button>
 </div>
 
 <div *ngSwitchCase="1">

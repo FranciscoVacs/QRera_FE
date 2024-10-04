@@ -22,26 +22,15 @@ export class ApiService {
     "finish_datetime": "2010-10-31 23:00:00",
     "event_description": "I don't know!",
     "min_age": 10,
-    "location": 1,
-    "ticketType": [ 
-      {    
-      "ticketType_name": "sala de las artes",
-      "begin_datetime": "2021-10-10 20:00:00",
-      "finish_datetime": "2021-10-30 23:00:00",
-      "price": 1000,
-      "max_quantity":100,
-      "event": 1
-      }, 
-      {
-      "ticketType_name": "sala de las artes",
-      "begin_datetime": "2021-10-10 20:00:00",
-      "finish_datetime": "2021-10-30 23:00:00",
-      "price": 1000,
-      "max_quantity":100,
-      "event": 1
-      }
-     ]
-    }
-);
+    "location": 2,
+    });
+  }
+
+  getLocation(id: number) {
+    return this.httpClient.get(`http://localhost:3000/api/location/${id}`);
+  }
+
+  getTicketTypes() {
+    return this.httpClient.get(`http://localhost:3000/api/ticketType`);
   }
 }

@@ -1,23 +1,30 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ApiService } from '../api.service.js';
-import { NgIf, NgSwitch, NgSwitchCase } from '@angular/common';
+import { NgIf, NgSwitch, NgSwitchCase, NgFor } from '@angular/common';
 
 @Component({
   selector: 'app-event',
   standalone: true,
-  imports: [NgIf, NgSwitch, NgSwitchCase],
+  imports: [NgIf, NgSwitch, NgSwitchCase, NgFor],
   templateUrl: './event.component.html',
   styleUrl: './event.component.scss'
 })
 export class EventComponent {
   event: any;
   ticketAmount: number = 3;
+  ticketTypes: any;
+  variable: any;
   state: number = 0;
-  constructor(private route: ActivatedRoute, private apis: ApiService){}
+  constructor(private route: ActivatedRoute, private apiservice: ApiService){}
 
   ngOnInit(){
-  this.event = this.apis.actualEvent;
+  this.event = this.apiservice.actualEvent;
+  this.apiservice.getTicketTypes().subscribe(
+    response => {this.variable = response;
+    this.ticketTypes = this.variable.data.filter((tType:any)=>tType.event==this.event.id);
+    console.log(this.ticketTypes)
+  })
   /*
   this.route.data.subscribe( 
     (data: {event: any}) => {
