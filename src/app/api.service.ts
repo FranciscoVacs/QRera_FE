@@ -33,4 +33,5 @@ export class ApiService {
   getTicketTypes() {
     return this.httpClient.get(`http://localhost:3000/api/ticketType`);
   }
+
 }

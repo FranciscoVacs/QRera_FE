@@ -23,7 +23,6 @@ export class EventPreviewComponent {
     .subscribe(response => {
       this.variable = response; 
       this.loc = this.variable.data; 
-      console.log(this.loc)
       })
     
   }

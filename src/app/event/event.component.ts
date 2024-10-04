@@ -14,7 +14,10 @@ export class EventComponent {
   event: any;
   ticketAmount: number = 3;
   ticketTypes: any;
+  ticketType: any;
+  loc: any;
   variable: any;
+  amounts: number[] = [1,2,3,4,5,6];
   state: number = 0;
   constructor(private route: ActivatedRoute, private apiservice: ApiService){}
 
@@ -25,6 +28,11 @@ export class EventComponent {
     this.ticketTypes = this.variable.data.filter((tType:any)=>tType.event==this.event.id);
     console.log(this.ticketTypes)
   })
+
+  this.apiservice.getLocation(this.event.location)
+    .subscribe(response => {
+      this.variable = response; 
+      this.loc = this.variable.data; })
   /*
   this.route.data.subscribe( 
     (data: {event: any}) => {
@@ -33,12 +41,14 @@ export class EventComponent {
   )*/
   }
 
-  updateState(){
+
+  setTicketType(chosenType: any){
+    this.ticketType = chosenType
     this.state++;
   }
-
   setTicketAmount(value: number){
     this.ticketAmount = value;
+    this.state++;
   }
 
   checkUserData(){
