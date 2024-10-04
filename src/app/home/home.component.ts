@@ -18,12 +18,17 @@ export class HomeComponent {
   
   bool = true;
   variable: any;
+  eventsLoaded: boolean = false;
   eventList: any = [];
-    onclicked() {
+    onClicked() {
         this.apiservice.postEvent().subscribe(response => this.variable = response)
     }
-    ngOnInit() {
-        this.apiservice.getEvents().subscribe(response => this.variable = response)
-        this.eventList = this.variable?.data
+    ngOnInit(){
+      this.loadEvents();
     }
+
+    loadEvents(){
+        this.apiservice.getEvents().subscribe(response => this.variable = response) 
+        this.eventList = this.variable?.data
+        }
 }

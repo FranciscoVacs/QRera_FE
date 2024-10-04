@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import {Router } from '@angular/router';
+import { ApiService } from '../api.service.js';
 
 @Component({
   selector: 'app-event-preview',
@@ -9,10 +10,17 @@ import {Router } from '@angular/router';
   styleUrl: './event-preview.component.scss'
 })
 export class EventPreviewComponent {
-  constructor(private router: Router){}
+  constructor(private router: Router, private apis: ApiService){}
  @Input() eventInput: any;
+  routename: any;
 
-  onTitleClicked(){
-  setTimeout(()=> this.router.navigate(['event']), 2000);
+  ngOnInit(){
+    this.routename = this.eventInput.event_name.toLowerCase();
+    this.routename = this.routename.replaceAll(' ','-');
+  }
+
+  onClicked(){
+    this.apis.actualEvent = this.eventInput;
+    setTimeout(()=> this.router.navigate([`event/${this.routename}`]), 2000);
   }
 }

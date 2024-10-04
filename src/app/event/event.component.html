@@ -1,1 +1,49 @@
-<p>event works!</p>
+<p>Nombre: {{event.event_name}}</p>
+<p>Descripcion: {{event.event_description}}</p>
+<p> Hora inicio: {{event.begin_datetime}} Hora fin: {{event.finish_datetime}}</p>
+<p>Edad minima: {{event.min_age}}</p>
+<p>Ubicacion: {{event.location}}</p>
+<hr><hr><hr><hr><hr>
+
+<div [ngSwitch]="state">
+
+<div *ngSwitchCase="0">
+<p>compra de entradas</p>
+<label>
+  <select>
+    <option>{{event.ticketType[0].ticketType_name}}</option>
+    <option>{{event.ticketType[1].ticketType_name}}</option>
+  </select>
+</label>
+<button (click)="updateState()">Elegir tipo</button>
+</div>
+
+<div *ngSwitchCase="1">
+<p>Nombre de tipo de entrada: {{event.ticketType[0].ticketType_name}}</p>
+<p>Precio de entrada: {{event.ticketType[0].price}}</p>
+<p>Cantidad a comprar: 
+  <label>
+    <select> 
+      <option (click)="updateState()" value="1">1</option>
+      <option (click)="updateState()" value="2">2</option>
+      <option (click)="updateState()" value="3">3</option>
+      <option (click)="updateState()" value="4">4</option>
+      <option (click)="updateState()" value="5">5</option>
+      <option (click)="updateState()" value="6">6</option>
+    </select>
+  </label>
+</p>
+</div>
+
+
+<div *ngSwitchCase="2">
+<p>Resumen de compra</p>
+<p>Ubicacion: {{event.location}}</p>
+<p>Fecha y hora: {{event.begin_datetime}}</p>
+<p>Tipo de entrada: {{event.ticketType[0].ticketType_name}}</p>
+<p>Cantidad de entradas: {{ticketAmount}}</p>
+<p>Precio final: {{event.ticketType[0].price * ticketAmount}} </p>
+<button (click)="checkUserData()">Confirmar compra</button>
+</div>
+
+</div>

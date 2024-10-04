@@ -6,6 +6,7 @@ import { EventComponent } from './event/event.component.js';
 
 export const routes: Routes = [
   {path: '', component: HomeComponent},
+  {path: 'event/:eventname', component: EventComponent},
   {path: 'event', component: EventComponent},
   {path: '**', component: HomeComponent} 
 ];
