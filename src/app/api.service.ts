@@ -14,6 +14,9 @@ export class ApiService {
     return this.httpClient.get(this.route);
   }
 
+  getEvent(id: number) {
+    return this.httpClient.get(`http://localhost:3000/api/event/${id}`);
+  }
   postEvent() {
     return this.httpClient.post(this.route, 
     {

@@ -24,11 +24,9 @@ export class EventPreviewComponent {
       this.variable = response; 
       this.loc = this.variable.data; 
       })
-    
   }
 
   onClicked(){
-    this.apiservice.actualEvent = this.eventInput;
-    setTimeout(()=> this.router.navigate([`event/${this.routename}`]), 2000);
+    setTimeout(()=> this.router.navigate([`event`, {eventID: this.eventInput.id, locationID: this.loc.id}]), 2000);
   }
 }

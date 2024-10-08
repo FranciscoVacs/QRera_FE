@@ -12,6 +12,8 @@ import { NgIf, NgSwitch, NgSwitchCase, NgFor } from '@angular/common';
 })
 export class EventComponent {
   event: any;
+  eventID: any;
+  locationID: any;
   ticketAmount: number = 3;
   ticketTypes: any;
   ticketType: any;
@@ -22,17 +24,25 @@ export class EventComponent {
   constructor(private route: ActivatedRoute, private apiservice: ApiService){}
 
   ngOnInit(){
-  this.event = this.apiservice.actualEvent;
+  this.eventID = this.route.snapshot.paramMap.get('eventID');
+  this.locationID = this.route.snapshot.paramMap.get('locationID');
+
+  this.apiservice.getEvent(this.eventID)
+  .subscribe(response => {
+    this.variable = response; 
+    this.event = this.variable.data});
+
+  this.apiservice.getLocation(this.locationID)
+    .subscribe(response => {
+      this.variable = response; 
+      this.loc = this.variable.data; })
+
   this.apiservice.getTicketTypes().subscribe(
     response => {this.variable = response;
     this.ticketTypes = this.variable.data.filter((tType:any)=>tType.event==this.event.id);
     console.log(this.ticketTypes)
   })
 
-  this.apiservice.getLocation(this.event.location)
-    .subscribe(response => {
-      this.variable = response; 
-      this.loc = this.variable.data; })
   /*
   this.route.data.subscribe( 
     (data: {event: any}) => {
@@ -40,7 +50,7 @@ export class EventComponent {
     }
   )*/
   }
-
+  
 
   setTicketType(chosenType: any){
     this.ticketType = chosenType
