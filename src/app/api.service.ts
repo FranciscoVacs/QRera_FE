@@ -7,18 +7,20 @@ import { Injectable } from '@angular/core';
 export class ApiService {
 
   constructor(private httpClient: HttpClient) { }
-  route = 'http://localhost:3000/api/event';
+  eventRoute = 'http://localhost:3000/api/event';
+  locationRoute = 'http://localhost:3000/api/location';
+  ticketTypeRoute = 'http://localhost:3000/api/ticketType';
   actualEvent: any;
   
   getEvents() {
-    return this.httpClient.get(this.route);
+    return this.httpClient.get(this.eventRoute);
   }
 
   getEvent(id: number) {
-    return this.httpClient.get(`http://localhost:3000/api/event/${id}`);
+    return this.httpClient.get(this.eventRoute + `/${id}`);
   }
   postEvent() {
-    return this.httpClient.post(this.route, 
+    return this.httpClient.post(this.eventRoute, 
     {
     "event_name": "Will it work?",
     "begin_datetime": "2010-10-31 20:00:00",
@@ -29,12 +31,16 @@ export class ApiService {
     });
   }
 
+  getLocations() {
+    return this.httpClient.get(this.locationRoute);
+  }
+
   getLocation(id: number) {
-    return this.httpClient.get(`http://localhost:3000/api/location/${id}`);
+    return this.httpClient.get(this.locationRoute + `/${id}`);
   }
 
   getTicketTypes() {
-    return this.httpClient.get(`http://localhost:3000/api/ticketType`);
+    return this.httpClient.get(this.ticketTypeRoute);
   }
 
 }

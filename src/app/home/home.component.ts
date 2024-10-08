@@ -20,6 +20,8 @@ export class HomeComponent {
   variable: any;
   eventsLoaded: boolean = false;
   eventList: any = [];
+  locationList: any = [];
+  returnLocation: any;
 
     onClicked() {
         this.apiservice.getEvents().subscribe(response => this.variable = response) 
@@ -31,10 +33,24 @@ export class HomeComponent {
 
     ngOnInit(){
       this.loadEvents();
+
+    }
+
+    findLocation(id: number){
+      this.returnLocation = this.locationList.find((loc:any) => this.eventList[id].location == loc.id)
+      return this.returnLocation
     }
 
     loadEvents(){
-        this.apiservice.getEvents().subscribe(response => this.variable = response) 
-        this.eventList = this.variable?.data
+        this.apiservice.getEvents()
+        .subscribe(response => {
+        this.variable = response;
+        this.eventList = this.variable.data
+        })
+        this.apiservice.getLocations()
+        .subscribe(response => {
+        this.variable = response;
+        this.locationList = this.variable.data
+        })
         }
 }

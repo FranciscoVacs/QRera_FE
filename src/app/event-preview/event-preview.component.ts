@@ -12,21 +12,16 @@ import { ApiService } from '../api.service.js';
 export class EventPreviewComponent {
   constructor(private router: Router, private apiservice: ApiService){}
  @Input() eventInput: any;
+ @Input() locationInput: any;
   routename: any;
-  loc: any;
   variable: any;
 
   ngOnInit(){
     this.routename = this.eventInput.event_name.toLowerCase();
     this.routename = this.routename.replaceAll(' ','-');
-    this.apiservice.getLocation(this.eventInput.location)
-    .subscribe(response => {
-      this.variable = response; 
-      this.loc = this.variable.data; 
-      })
   }
 
   onClicked(){
-    setTimeout(()=> this.router.navigate([`event`, {eventID: this.eventInput.id, locationID: this.loc.id}]), 2000);
+    setTimeout(()=> this.router.navigate([`event`, {eventID: this.eventInput.id, locationID: this.locationInput.id}]), 2000);
   }
 }

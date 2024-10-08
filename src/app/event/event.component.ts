@@ -40,7 +40,6 @@ export class EventComponent {
   this.apiservice.getTicketTypes().subscribe(
     response => {this.variable = response;
     this.ticketTypes = this.variable.data.filter((tType:any)=>tType.event==this.event.id);
-    console.log(this.ticketTypes)
   })
 
   /*
