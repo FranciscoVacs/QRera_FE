@@ -23,14 +23,6 @@ export class HomeComponent {
   locationList: any = [];
   returnLocation: any;
 
-    onClicked() {
-        this.apiservice.getEvents().subscribe(response => this.variable = response) 
-    }
-
-    onClickedGET(){
-      this.loadEvents();
-    }
-
     ngOnInit(){
       this.loadEvents();
 

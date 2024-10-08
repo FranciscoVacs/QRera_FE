@@ -1,23 +1,3 @@
-<nav>
-  <div>
-    <img id="logo" src="assets/portallogo.png" alt="logo">
-  </div>
-  <div id="topbar">
-    <h1 >HisLine </h1>
-    <ul>
-      <li><a class="navButton" href=""> Eventos </a></li>
-      <li><a class="navButton" href=""> Localidades </a></li>
-      <li><a class="navButton" href=""> Contacto </a></li>
-      <li><a class="navButton" href=""> Album de fotos </a></li>
-      <li><a class="navButton" href=""> Crear Evento </a></li>
-    </ul>
-    <div id="logbuttons">
-      <button class="button" (click)="onClicked()"><a>Create Account</a></button>
-      <button (click)="onClickedGET()"><a>Log in</a></button>
-    </div>
-  </div>
-  <hr style="clear: both;">
-</nav>
 <section id="events">
   <app-event-preview [eventInput]="event" [locationInput]="findLocation(i)" *ngFor="let event of eventList; index as i; last as isLast; even as isEven"
     [class.lastEvent]="isLast && isEven" class="event"></app-event-preview>

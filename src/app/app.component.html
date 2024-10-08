@@ -1,1 +1,21 @@
+<nav>
+  <div>
+    <img id="logo" src="assets/portallogo.png" alt="logo">
+  </div>
+  <div id="topbar">
+    <h1>HisLine </h1>
+    <ul>
+      <li><a class="navButton" href=""> Eventos </a></li>
+      <li><a class="navButton" href=""> Localidades </a></li>
+      <li><a class="navButton" href=""> Contacto </a></li>
+      <li><a class="navButton" href=""> Album de fotos </a></li>
+      <li><a class="navButton" [routerLink]="['/manageevent']"> Crear Evento </a></li>
+    </ul>
+    <div id="logbuttons">
+      <button class="button" (click)="onClicked()"><a>Create Account</a></button>
+      <button (click)="onClickedGET()"><a>Log in</a></button>
+    </div>
+  </div>
+  <hr style="clear: both;">
+</nav>
 <router-outlet></router-outlet>
