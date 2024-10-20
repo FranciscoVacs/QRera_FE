@@ -1,31 +1,41 @@
-<p>manage-event works!</p>
-<form [formGroup]="eventForm">
+<form [formGroup]="eventForm" (ngSubmit)="onSubmitEvent()">
   <label>
     Nombre del Evento
     <input type="text" formControlName="event_name"/>
   </label>
+  <br>
   <label>
     Fecha y hora de inicio
     <input type="text" formControlName="begin_datetime"/>
   </label>
+  <br>
   <label>
     Fecha y hora de fin
     <input type="text" formControlName="finish_datetime"/>
   </label>
+  <br>
   <label>
     Descripcion del evento
     <input type="text" formControlName="event_description"/>
   </label>
+  <br>
   <label>
     Edad mínima
     <input type="text" formControlName="min_age"/>
   </label>
+  <br>
   <label>
     Ubicación
     <input type="text" formControlName="location" />
   </label>
+  <br>
   <label>
     Tipos de ticket
     <input type="text" formControlName="ticketType" />
   </label>
+  <br>
+  <button type="submit" [disabled]="!eventForm.valid">
+    Cargar
+  </button>
 </form>
+<h1> {{eventForm.value.event_name}} {{eventForm.value.begin_datetime}} {{eventForm.value.finish_datetime}}</h1>

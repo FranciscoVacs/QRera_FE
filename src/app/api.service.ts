@@ -19,16 +19,8 @@ export class ApiService {
   getEvent(id: number) {
     return this.httpClient.get(this.eventRoute + `/${id}`);
   }
-  postEvent() {
-    return this.httpClient.post(this.eventRoute, 
-    {
-    "event_name": "Will it work?",
-    "begin_datetime": "2010-10-31 20:00:00",
-    "finish_datetime": "2010-10-31 23:00:00",
-    "event_description": "I don't know!",
-    "min_age": 10,
-    "location": 2,
-    });
+  postEvent(event: any) {
+    return this.httpClient.post(this.eventRoute, event);
   }
 
   getLocations() {
