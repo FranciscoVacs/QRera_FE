@@ -1,1 +1,31 @@
 <p>manage-event works!</p>
+<form [formGroup]="eventForm">
+  <label>
+    Nombre del Evento
+    <input type="text" formControlName="event_name"/>
+  </label>
+  <label>
+    Fecha y hora de inicio
+    <input type="text" formControlName="begin_datetime"/>
+  </label>
+  <label>
+    Fecha y hora de fin
+    <input type="text" formControlName="finish_datetime"/>
+  </label>
+  <label>
+    Descripcion del evento
+    <input type="text" formControlName="event_description"/>
+  </label>
+  <label>
+    Edad mínima
+    <input type="text" formControlName="min_age"/>
+  </label>
+  <label>
+    Ubicación
+    <input type="text" formControlName="location" />
+  </label>
+  <label>
+    Tipos de ticket
+    <input type="text" formControlName="ticketType" />
+  </label>
+</form>

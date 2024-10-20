@@ -16,7 +16,7 @@ export class AppComponent {
   title = 'QRera-FE';
 
     onClicked() {
-
+      
     }
 
     onClickedGET(){
