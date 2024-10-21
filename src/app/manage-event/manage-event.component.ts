@@ -33,8 +33,8 @@ export class ManageEventComponent {
      "min_age": this.eventForm.value.min_age,
      "location": this.eventForm.value.location,
     }
-    this.apiservice.postEvent(this.event).subscribe
-    (response=> this.res = response)
-    /* alert(this.event.value) */
+   this.apiservice.postEvent(this.event).subscribe
+    (response=> this.res = response) 
+    alert(typeof this.event.min_age) 
   }
 }
