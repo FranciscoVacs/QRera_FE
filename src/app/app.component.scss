@@ -6,12 +6,6 @@ ul {
 
 a {
   text-decoration: none;
-  color: black
-}
-
-h1 {
-  float: left;
-  margin: 0 1rem;
 }
 
 li {
@@ -21,16 +15,16 @@ li {
 
 nav {
   height: 5rem;
-  background-color: pink;
+  background-color: black;
+}
+
+.navButton{
+  color: white;
 }
 
 #logo {
-  width: 4.8rem;
+  height: 5rem;
   float: left;
-}
-
-#logbuttons {
-  width: 0 3rem;
 }
 
 #logbuttons button {
@@ -45,12 +39,6 @@ nav {
   margin: 0 auto;
   width: 70%;
   background-color: white;
-}
-
-#footer {
-  clear: both;
-  background-color: pink;
-  height: 5.25rem;
 }
 
 #sthd {
