@@ -1,11 +1,14 @@
 import { Component } from '@angular/core';
 import { ReactiveFormsModule, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ApiService } from '../api.service.js';
+import {MatDatepickerModule} from '@angular/material/datepicker'; 
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
 
 @Component({
   selector: 'app-manage-event',
   standalone: true,
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, MatDatepickerModule, MatFormFieldModule, MatInputModule],
   templateUrl: './manage-event.component.html',
   styleUrl: './manage-event.component.scss'
 })

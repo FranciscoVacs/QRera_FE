@@ -1,63 +1,20 @@
-ul {
-  list-style: none;
-  padding: 0px;
-  margin: 0px;
-}
-
-a {
-  text-decoration: none;
-  color: black
-}
-
-h1 {
-  float: left;
-  margin: 0 1rem;
-}
-
-li {
-  float: left;
-  margin: 0 6.5rem;
-}
-
-nav {
-  height: 5rem;
-  background-color: pink;
-}
-
-#logo {
-  width: 4.8rem;
-  float: left;
-}
-
-#logbuttons {
-  width: 0 3rem;
-}
-
-#logbuttons button {
-  float: right;
-}
-
-#topbar {
-  padding-top: 2rem;
-}
 
 #events {
   margin: 0 auto;
   width: 70%;
-  background-color: white;
 }
 
-#footer {
+footer {
   clear: both;
-  background-color: pink;
+  background-color: black;
   height: 5.25rem;
 }
 
-#sthd {
-  margin: 0;
+#support {
+  color: white;
 }
 
-#flogo {
+#footlogo {
   height: 5rem;
 }
 
@@ -80,14 +37,6 @@ app-event-preview.lastEvent {
   height: 33rem;
   border: .15rem solid black;
   border-radius: .6rem;
-}
-
-hr {
-  margin: 0;
-}
-
-.button {
-  margin: 0 .5rem;
 }
 
 app-event-preview.event:hover {

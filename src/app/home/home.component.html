@@ -2,10 +2,9 @@
   <app-event-preview [eventInput]="event" [locationInput]="findLocation(i)" *ngFor="let event of eventList; index as i; last as isLast; even as isEven"
     [class.lastEvent]="isLast && isEven" class="event"></app-event-preview>
 </section>
-<hr style="clear: both;">
-<footer id="footer">
+<footer>
   <section>
-    <img id="flogo" src="assets/bohemia-logo.png" alt="logo">
+    <img id="footlogo" src="assets/bohemia-logo.png" alt="logo">
   </section>
-  <h2 id="sthd">Support</h2>
+  <h2 id="support">Support</h2>
 </footer>

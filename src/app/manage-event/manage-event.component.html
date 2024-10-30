@@ -6,7 +6,13 @@
   <br>
   <label>
     Fecha y hora de inicio
-    <input type="text" formControlName="begin_datetime"/>
+  <mat-form-field>
+    <mat-label>Selecciona una fecha</mat-label>
+    <input matInput [matDatepicker]="picker" formControlName="begin_datetime">
+    <mat-hint>MM/DD/YYYY</mat-hint>
+    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
   </label>
   <br>
   <label>
@@ -37,5 +43,8 @@
   <button type="submit" [disabled]="!eventForm.valid">
     Cargar
   </button>
+  <hr>
+
+
 </form>
 <h1> {{eventForm.value.event_name}} {{eventForm.value.begin_datetime}} {{eventForm.value.finish_datetime}}</h1>
