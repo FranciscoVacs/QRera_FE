@@ -1,5 +1,8 @@
-<a (click)="onClicked()"><div><img class="eventimg" > </div>
+<a (click)="onClicked()">
+<div><img class="eventimg" > </div>
 <hr/>
-<h1 class="content">{{eventInput.event_name}}</h1>
+<span><h1 class="content">{{eventInput.event_name}}</h1></span>
 <p class="content">{{eventInput.event_description}} </p>
-<p class="content">{{eventInput.begin_datetime}}</p></a>
+<p class="content">{{eventInput.begin_datetime}}</p>
+</a>
+<mat-icon (click)="onDelete()" class="material-symbols-outlined">delete</mat-icon>

@@ -22,7 +22,9 @@ export class ApiService {
   postEvent(event: any) {
     return this.httpClient.post(this.eventRoute, event);
   }
-
+  deleteEvent(id:number){
+    return this.httpClient.delete(this.eventRoute + `/${id}`)
+  }
   getLocations() {
     return this.httpClient.get(this.locationRoute);
   }

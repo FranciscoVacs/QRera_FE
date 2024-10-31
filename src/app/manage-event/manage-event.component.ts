@@ -61,8 +61,7 @@ export class ManageEventComponent {
     }
    this.apiservice.postEvent(this.event).subscribe
     (response=> this.res = response) 
-    console.log(this.eventForm.value.begin_datetime)
-    alert(this.event.begin_datetime + ' ' + this.event.finish_datetime) 
+    alert(this.event.event_name) 
   }
 
   formatDateTime(date: any, selectedHour: string, selectedMinute: string){
