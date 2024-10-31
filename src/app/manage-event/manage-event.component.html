@@ -1,44 +1,87 @@
 <form [formGroup]="eventForm" (ngSubmit)="onSubmitEvent()">
-  <label>
-    Nombre del Evento
-    <input type="text" formControlName="event_name"/>
-  </label>
-  <br>
-  <label>
-    Fecha y hora de inicio
   <mat-form-field>
-    <mat-label>Selecciona una fecha</mat-label>
-    <input matInput [matDatepicker]="picker" formControlName="begin_datetime">
-    <mat-hint>MM/DD/YYYY</mat-hint>
-    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-    <mat-datepicker #picker></mat-datepicker>
+    <mat-label>Nombre del evento</mat-label>
+    <input matInput formControlName="event_name" />
   </mat-form-field>
-  </label>
   <br>
-  <label>
-    Fecha y hora de fin
-    <input type="text" formControlName="finish_datetime"/>
-  </label>
+    <mat-form-field>
+      <mat-label>Fecha de inicio</mat-label>
+      <input matInput [matDatepicker]="picker1" formControlName="begin_datetime">
+      <mat-hint>MM/DD/YYYY</mat-hint>
+      <mat-datepicker-toggle matIconSuffix [for]="picker1"></mat-datepicker-toggle>
+      <mat-datepicker #picker1></mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Hora </mat-label>
+      <mat-select [(value)]="selectedStartHour">
+        @for (hour of hours; track hour) {
+        <mat-option [value]="hour">{{hour}}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Minuto </mat-label>
+      <mat-select [(value)]="selectedStartMinute">
+        @for (minuto of minutes; track minuto) {
+        <mat-option [value]="minuto">{{minuto}}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+
   <br>
-  <label>
-    Descripcion del evento
-    <input type="text" formControlName="event_description"/>
-  </label>
+    <mat-form-field>
+      <mat-label>Fecha de fin</mat-label>
+      <input matInput [matDatepicker]="picker2" formControlName="finish_datetime">
+      <mat-hint>MM/DD/YYYY</mat-hint>
+      <mat-datepicker-toggle matIconSuffix [for]="picker2"></mat-datepicker-toggle>
+      <mat-datepicker #picker2></mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Hora </mat-label>
+      <mat-select [(value)]="selectedFinishHour">
+        @for (hour of hours; track hour) {
+        <mat-option [value]="hour">{{hour}}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+    
+    <mat-form-field>
+      <mat-label>Minuto </mat-label>
+      <mat-select [(value)]="selectedFinishMinute">
+        @for (minuto of minutes; track minuto) {
+        <mat-option [value]="minuto">{{minuto}}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+
+
   <br>
-  <label>
-    Edad mínima
-    <input type="number" formControlName="min_age"/>
-  </label>
+  <mat-form-field>
+    <mat-label>Descripción</mat-label>
+    <input matInput formControlName="event_description"/>
+  </mat-form-field>
   <br>
-  <label>
-    Ubicación
-    <input type="number" formControlName="location" />
-  </label>
+  <mat-form-field>
+    <mat-label>Edad mínima</mat-label>
+    <input matInput formControlName="min_age" />
+  </mat-form-field>
   <br>
-  <label>
-    Tipos de ticket
-    <input type="text" formControlName="ticketType" />
-  </label>
+    <mat-form-field>
+      <mat-label>Ubicación </mat-label>
+      <mat-select formControlName="location">
+        @for (location of locationList; track location) {
+        <mat-option [value]="location.id">{{location.location_name}}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+  <br>
+  <mat-form-field>
+    <mat-label>Tipos de ticket</mat-label>
+    <input matInput formControlName="ticketType" />
+  </mat-form-field>
   <br>
   <button type="submit" [disabled]="!eventForm.valid">
     Cargar
