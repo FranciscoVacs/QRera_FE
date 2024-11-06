@@ -19,7 +19,7 @@ export class EventPreviewComponent {
   response: any;
 
   onClicked(){
-    setTimeout(()=> this.router.navigate([`event`, {eventID: this.eventInput.id, locationID: this.locationInput.id}]), 2000);
+    setTimeout(()=> this.router.navigate([`event`, {eventID: this.eventInput.id}]));
   }
 
   onDelete(){
@@ -28,5 +28,9 @@ export class EventPreviewComponent {
     this.response = response;
     alert("Evento eliminado")
     })
+  }
+
+  onUpdate(){
+    setTimeout(()=> this.router.navigate([`manageevent`, {updating: true, eventID: this.eventInput.id}]));
   }
 }

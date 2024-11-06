@@ -1,4 +1,4 @@
-<a (click)="onClicked()">
+<a (click)=onClicked()>
 <div><img class="eventimg" > </div>
 <hr/>
 <span><h1 class="content">{{eventInput.event_name}}</h1></span>
@@ -6,3 +6,4 @@
 <p class="content">{{eventInput.begin_datetime}}</p>
 </a>
 <mat-icon (click)="onDelete()" class="material-symbols-outlined">delete</mat-icon>
+<mat-icon (click)="onUpdate()" class="material-symbols-outlined">cached</mat-icon>

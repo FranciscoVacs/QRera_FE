@@ -5,6 +5,7 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {MatSelectModule} from '@angular/material/select';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-manage-event',
@@ -15,12 +16,13 @@ import {MatSelectModule} from '@angular/material/select';
 
 })
 export class ManageEventComponent {
-  constructor(private apiservice: ApiService){}
+  constructor(private route: ActivatedRoute, private apiservice: ApiService){}
   selectedStartHour: string = ''
   selectedStartMinute: string = ''
   selectedFinishHour: string = ''
   selectedFinishMinute: string = ''
-
+  updating: boolean = false;
+  eventID: number = 0;
   hours: string[] = ['00','01','02','03','04','05','06','07','08','09','10','11','12','13','14','15','16','17','18','19','20','21','22','23']
   minutes: string[] = ['00', '05', '10', '15', '20', '25', '30', '35', '40', '45', '50', '55']
   event: any;
@@ -38,6 +40,18 @@ export class ManageEventComponent {
   })
 
   ngOnInit(){
+    this.route.params.subscribe( params => {
+      this.updating = params['updating'];
+      this.eventID = params['eventID']
+    })
+    if (this.updating){
+      this.apiservice.getEvent(this.eventID)
+      .subscribe( (response) => {
+        const variable: any = response
+        this.event = variable.data
+        this.eventForm.setValue({event_name: this.event.event_name, begin_datetime: this.event.begin_datetime, finish_datetime: this.event.finish_datetime, event_description: this.event.event_description, min_age: this.event.min_age, location: this.event.location, ticketType: this.event.ticketType})
+      })
+    }
     this.apiservice.getLocations()
     .subscribe(response => {
     this.variable = response;

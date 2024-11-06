@@ -2,7 +2,7 @@
 <p>Descripcion: {{event.event_description}}</p>
 <p> Inicio: {{event.begin_datetime}} Fin: {{event.finish_datetime}}</p>
 <p>Edad minima: {{event.min_age}}</p>
-<p>Ubicacion: {{loc.location_name}}</p>
+<p>Ubicacion: {{event.location.location_name}}</p>
 <hr><hr><hr><hr><hr>
 
 <div [ngSwitch]="state">
@@ -11,14 +11,14 @@
 <p>compra de entradas</p>
 <label>
   <select>
-    <option (click)="setTicketType(ticketTypes[i])"  *ngFor="let tType of ticketTypes; index as i">{{ticketTypes[i].ticketType_name}}</option>
+    <option (click)="setTicketType(tType)"  *ngFor="let tType of event.ticketType; index as i">{{tType.ticketType_name}}</option>
   </select>
 </label>
 </div>
 
 <div *ngSwitchCase="1">
-<p>Nombre de tipo de entrada: {{ticketType.ticketType_name}}</p>
-<p>Precio de entrada: {{ticketType.price}}</p>
+<p>Nombre de tipo de entrada: {{selectedTicketType.ticketType_name}}</p>
+<p>Precio de entrada: {{selectedTicketType.price}}</p>
 <p>Cantidad a comprar: 
   <label>
     <select> 
@@ -28,15 +28,17 @@
   </label>
 </p>
 </div>
-
+<button (click)="onClick()">
+  Getear evento
+</button>
 
 <div *ngSwitchCase="2">
 <p>Resumen de compra</p>
-<p>Ubicacion: {{loc.location_name}}</p>
+<p>Ubicacion: {{event.location.location_name}}</p>
 <p>Fecha y hora: {{event.begin_datetime}}</p>
-<p>Tipo de entrada: {{ticketType.ticketType_name}}</p>
+<p>Tipo de entrada: {{selectedTicketType.ticketType_name}}</p>
 <p>Cantidad de entradas: {{ticketAmount}}</p>
-<p>Precio final: {{ticketType.price * ticketAmount}} </p>
+<p>Precio final: {{selectedTicketType.price * ticketAmount}} </p>
 <button (click)="checkUserData()">Confirmar compra</button>
 </div>
 

@@ -13,11 +13,8 @@ import { NgIf, NgSwitch, NgSwitchCase, NgFor } from '@angular/common';
 export class EventComponent {
   event: any;
   eventID: any;
-  locationID: any;
   ticketAmount: number = 3;
-  ticketTypes: any;
-  ticketType: any;
-  loc: any;
+  selectedTicketType: any;
   variable: any;
   amounts: number[] = [1,2,3,4,5,6];
   state: number = 0;
@@ -25,22 +22,11 @@ export class EventComponent {
 
   ngOnInit(){
   this.eventID = this.route.snapshot.paramMap.get('eventID');
-  this.locationID = this.route.snapshot.paramMap.get('locationID');
 
   this.apiservice.getEvent(this.eventID)
   .subscribe(response => {
     this.variable = response; 
     this.event = this.variable.data});
-
-  this.apiservice.getLocation(this.locationID)
-    .subscribe(response => {
-      this.variable = response; 
-      this.loc = this.variable.data; })
-
-  this.apiservice.getTicketTypes().subscribe(
-    response => {this.variable = response;
-    this.ticketTypes = this.variable.data.filter((tType:any)=>tType.event==this.event.id);
-  })
 
   /*
   this.route.data.subscribe( 
@@ -49,10 +35,16 @@ export class EventComponent {
     }
   )*/
   }
-  
+  onClick(){
+      this.apiservice.getEvent(this.eventID)
+  .subscribe(response => {
+    this.variable = response; 
+    console.log(this.variable)
+  });
+  }
 
   setTicketType(chosenType: any){
-    this.ticketType = chosenType
+    this.selectedTicketType = chosenType
     this.state++;
   }
   setTicketAmount(value: number){
