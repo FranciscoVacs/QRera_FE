@@ -15,7 +15,8 @@ li {
 
 nav {
   height: 5rem;
-  background-color: black;}
+/*  background-color: black; */
+}
 
 .navButton{
   color: white;
@@ -33,6 +34,8 @@ nav {
 
 #topbar {
   padding-top: 2rem;
+  display: flex;
+  align-items: center;
 }
 
 #events {
@@ -61,3 +64,26 @@ hr {
   margin: 0 .5rem;
 }
 
+#account {
+  border-radius: 0;
+  width: 70%;
+}
+
+#nav {
+  width: 40%;
+}
+
+.tab-bar {
+  padding-top: 2rem;
+  display: flex;
+  align-items: center;
+}
+
+mat-tab-group {
+  width: 70%;
+}
+
+.accountbutton {
+  width: 30%;
+  text-align: right;
+}

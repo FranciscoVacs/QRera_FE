@@ -2,17 +2,15 @@
   <div>
     <a href=""><img id="logo" src="assets/bohemia-logo.png" alt="logo"></a>
   </div>
-  <div id="topbar">
-    <ul>
-      <li><a class="navButton" href=""> Eventos </a></li>
-      <li><a class="navButton" href=""> Contacto </a></li>
-      <li><a class="navButton" href=""> Album de fotos </a></li>
-      <li><a class="navButton" [routerLink]="['/manageevent']"> Crear Evento </a></li>
-    </ul>
-    <div id="logbuttons">
-      <button class="button" (click)="onClicked()"><a>Create Account</a></button>
-      <button (click)="onClickedGET()"><a>Log in</a></button>
-    </div>
+<div class="tab-bar">
+  <mat-tab-group animationDuration="250ms">
+    <mat-tab label="Contacto"></mat-tab>
+    <mat-tab label="Mis entradas"></mat-tab>
+    <a [routerLink]="['/manageevent']"><mat-tab label="Crear Evento"></mat-tab></a>
+  </mat-tab-group>
+  <div class="accountbutton">
+        <button id="account" mat-raised-button> Login</button>
   </div>
+</div>
 </nav>
 <router-outlet></router-outlet>
