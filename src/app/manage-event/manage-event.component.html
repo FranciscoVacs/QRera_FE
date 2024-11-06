@@ -71,7 +71,7 @@
   <br>
     <mat-form-field>
       <mat-label>Ubicación </mat-label>
-      <mat-select formControlName="location">
+      <mat-select [(ngModel)]="loc" [ngModelOptions]="{standalone: true}">
         @for (location of locationList; track location) {
         <mat-option [value]="location.id">{{location.location_name}}</mat-option>
         }

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ReactiveFormsModule, FormControl, FormGroup, Validators } from '@angular/forms';
+import { ReactiveFormsModule, FormControl, FormGroup, Validators, FormsModule} from '@angular/forms';
 import { ApiService } from '../api.service.js';
 import {MatDatepickerModule} from '@angular/material/datepicker'; 
 import {MatFormFieldModule} from '@angular/material/form-field';
@@ -10,7 +10,7 @@ import { ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-manage-event',
   standalone: true,
-  imports: [ReactiveFormsModule, MatDatepickerModule, MatFormFieldModule, MatInputModule, MatSelectModule],
+  imports: [ReactiveFormsModule, MatDatepickerModule, MatFormFieldModule, MatInputModule, MatSelectModule, FormsModule],
   templateUrl: './manage-event.component.html',
   styleUrl: './manage-event.component.scss',
 
@@ -27,8 +27,10 @@ export class ManageEventComponent {
   minutes: string[] = ['00', '05', '10', '15', '20', '25', '30', '35', '40', '45', '50', '55']
   event: any;
   res:any;
+  selectedLocation: string = '';
   locationList: any;
   variable: any;
+  loc: string = ''
   eventForm = new FormGroup ({
     event_name: new FormControl('', Validators.required),  
     begin_datetime: new FormControl('', Validators.required),
@@ -49,7 +51,15 @@ export class ManageEventComponent {
       .subscribe( (response) => {
         const variable: any = response
         this.event = variable.data
-        this.eventForm.setValue({event_name: this.event.event_name, begin_datetime: this.event.begin_datetime, finish_datetime: this.event.finish_datetime, event_description: this.event.event_description, min_age: this.event.min_age, location: this.event.location, ticketType: this.event.ticketType})
+        console.log(this.event)
+        console.log(this.event.location.location_name)
+        console.log(this.event.ticketType[0].ticketType_name)
+        this.loc = this.event.location.location_name
+        this.selectedLocation = this.event.location.location_name
+        this.eventForm
+          .patchValue({event_name: this.event.event_name, begin_datetime: this.event.begin_datetime, 
+          finish_datetime: this.event.finish_datetime, event_description: this.event.event_description, 
+          min_age: this.event.min_age, location: this.event.location.location_name, ticketType: this.event.ticketType[0].ticketType_name})
       })
     }
     this.apiservice.getLocations()
