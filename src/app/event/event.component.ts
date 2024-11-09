@@ -21,7 +21,9 @@ export class EventComponent {
   constructor(private route: ActivatedRoute, private apiservice: ApiService){}
 
   ngOnInit(){
-  this.eventID = this.route.snapshot.paramMap.get('eventID');
+  this.route.params.subscribe( params => {
+    this.eventID = params['eventID'];
+   })
 
   this.apiservice.getEvent(this.eventID)
   .subscribe(response => {

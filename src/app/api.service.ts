@@ -22,6 +22,11 @@ export class ApiService {
   postEvent(event: any) {
     return this.httpClient.post(this.eventRoute, event);
   }
+
+  updateEvent(event: any) {
+    return this.httpClient.
+  }
+
   deleteEvent(id:number){
     return this.httpClient.delete(this.eventRoute + `/${id}`)
   }

@@ -74,12 +74,11 @@ hr {
 }
 
 .tab-bar {
-  padding-top: 2rem;
   display: flex;
   align-items: center;
 }
 
-mat-tab-group {
+#mat-tab-group {
   width: 70%;
 }
 

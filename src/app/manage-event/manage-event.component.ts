@@ -51,9 +51,6 @@ export class ManageEventComponent {
       .subscribe( (response) => {
         const variable: any = response
         this.event = variable.data
-        console.log(this.event)
-        console.log(this.event.location.location_name)
-        console.log(this.event.ticketType[0].ticketType_name)
         this.loc = this.event.location.location_name
         this.selectedLocation = this.event.location.location_name
         this.eventForm
@@ -83,8 +80,14 @@ export class ManageEventComponent {
      "location": this.eventForm.value.location,
      "ticketType": this.eventForm.value.ticketType,
     }
-   this.apiservice.postEvent(this.event).subscribe
-    (response=> this.res = response) 
+    if (this.updating){
+      this.apiservice.updateEvent(this.event).subscribe
+      (response => this.res = response)
+    }
+    else {
+      this.apiservice.postEvent(this.event).subscribe
+      (response=> this.res = response) 
+    }
     alert(this.event.event_name) 
   }
 

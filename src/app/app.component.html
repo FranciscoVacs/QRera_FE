@@ -1,16 +1,20 @@
+
 <nav>
   <div>
     <a href=""><img id="logo" src="assets/bohemia-logo.png" alt="logo"></a>
-  </div>
-<div class="tab-bar">
-  <mat-tab-group animationDuration="250ms">
-    <mat-tab label="Contacto"></mat-tab>
-    <mat-tab label="Mis entradas"></mat-tab>
-    <a [routerLink]="['/manageevent']"><mat-tab label="Crear Evento"></mat-tab></a>
-  </mat-tab-group>
+  </div> 
+<div class="tab-bar"> 
+  <nav id="mat-tab-group" mat-tab-nav-bar [tabPanel]="tabPanel" animationDuration="150ms">
+    @for (obj of arr; track obj) {
+    <a class="link" [routerLink]="obj.route" mat-tab-link (click)="activeLink = obj.link" [active]="activeLink == obj.link"> {{obj.link}} </a>
+    }
+  </nav>
   <div class="accountbutton">
-        <button id="account" mat-raised-button> Login</button>
+    <button id="account" mat-raised-button> Login</button>
   </div>
 </div>
-</nav>
-<router-outlet></router-outlet>
+  
+  </nav>
+  <mat-tab-nav-panel #tabPanel>
+    <router-outlet></router-outlet>
+  </mat-tab-nav-panel>

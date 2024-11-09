@@ -16,6 +16,14 @@ import {MatButtonModule} from '@angular/material/button';
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
+  arr = [
+    {link: "Contacto", route: ""},
+    {link: "Mis entradas", route: ""},
+    {link: "Crear evento", route: "/manageevent"}
+  ]
+  routes = ['**','**',"['/manageevent']"]
+  links = ['Contacto', 'Mis entradas', 'Crear evento'];
+  activeLink = this.links[0];
   title = 'QRera-FE';
 
     onClicked() {

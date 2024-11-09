@@ -7,7 +7,6 @@ import { ManageEventComponent } from './manage-event/manage-event.component.js';
 
 export const routes: Routes = [
   {path: '', title: 'Home',component: HomeComponent},
-  {path: 'event/:eventname', component: EventComponent},
   {path: 'event', component: EventComponent},
   {path: 'manageevent', component: ManageEventComponent},
   {path: '**', component: HomeComponent} 
