@@ -24,7 +24,7 @@ export class ApiService {
   }
 
   updateEvent(event: any) {
-    return this.httpClient.
+    return this.httpClient.patch(this.eventRoute + `/${event.id}`, event);
   }
 
   deleteEvent(id:number){

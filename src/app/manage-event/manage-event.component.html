@@ -69,14 +69,16 @@
     <input matInput formControlName="min_age" />
   </mat-form-field>
   <br>
+
     <mat-form-field>
       <mat-label>Ubicación </mat-label>
-      <mat-select [(ngModel)]="loc" [ngModelOptions]="{standalone: true}">
+      <mat-select [(value)]="selectedLocation">
         @for (location of locationList; track location) {
-        <mat-option [value]="location.id">{{location.location_name}}</mat-option>
+        <mat-option [value]="location">{{location.location_name}}</mat-option>
         }
       </mat-select>
     </mat-form-field>
+
   <br>
   <mat-form-field>
     <mat-label>Tipos de ticket</mat-label>
@@ -86,8 +88,4 @@
   <button type="submit" [disabled]="!eventForm.valid">
     Cargar
   </button>
-  <hr>
-
-
 </form>
-<h1> {{eventForm.value.event_name}} {{eventForm.value.begin_datetime}} {{eventForm.value.finish_datetime}}</h1>

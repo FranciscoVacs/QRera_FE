@@ -21,9 +21,7 @@ export class AppComponent {
     {link: "Mis entradas", route: ""},
     {link: "Crear evento", route: "/manageevent"}
   ]
-  routes = ['**','**',"['/manageevent']"]
-  links = ['Contacto', 'Mis entradas', 'Crear evento'];
-  activeLink = this.links[0];
+  activeLink = this.arr[0].link;
   title = 'QRera-FE';
 
     onClicked() {

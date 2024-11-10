@@ -17,27 +17,26 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class ManageEventComponent {
   constructor(private route: ActivatedRoute, private apiservice: ApiService){}
-  selectedStartHour: string = ''
-  selectedStartMinute: string = ''
-  selectedFinishHour: string = ''
-  selectedFinishMinute: string = ''
+  selectedStartHour: string = '00'
+  selectedStartMinute: string = '00'
+  selectedFinishHour: string = '00'
+  selectedFinishMinute: string = '00'
   updating: boolean = false;
   eventID: number = 0;
   hours: string[] = ['00','01','02','03','04','05','06','07','08','09','10','11','12','13','14','15','16','17','18','19','20','21','22','23']
   minutes: string[] = ['00', '05', '10', '15', '20', '25', '30', '35', '40', '45', '50', '55']
   event: any;
   res:any;
-  selectedLocation: string = '';
+  selectedLocation: any;
   locationList: any;
   variable: any;
   loc: string = ''
   eventForm = new FormGroup ({
     event_name: new FormControl('', Validators.required),  
     begin_datetime: new FormControl('', Validators.required),
-    finish_datetime: new FormControl(''),
+    finish_datetime: new FormControl('', Validators.required),
     event_description: new FormControl(''),
     min_age: new FormControl(''),
-    location: new FormControl('', Validators.required),
     ticketType: new FormControl('', Validators.required),
   })
 
@@ -51,14 +50,13 @@ export class ManageEventComponent {
       .subscribe( (response) => {
         const variable: any = response
         this.event = variable.data
-        this.loc = this.event.location.location_name
-        this.selectedLocation = this.event.location.location_name
         this.eventForm
-          .patchValue({event_name: this.event.event_name, begin_datetime: this.event.begin_datetime, 
-          finish_datetime: this.event.finish_datetime, event_description: this.event.event_description, 
-          min_age: this.event.min_age, location: this.event.location.location_name, ticketType: this.event.ticketType[0].ticketType_name})
-      })
-    }
+          .patchValue({event_name: this.event.event_name, event_description: this.event.event_description, 
+          min_age: this.event.min_age, ticketType: this.event.ticketType[0].ticketType_name})
+        this.selectedLocation = this.event.location
+        console.log(this.event.begin_datetime)
+        console.log(this.eventForm.value.begin_datetime)    
+      })}
     this.apiservice.getLocations()
     .subscribe(response => {
     this.variable = response;
@@ -68,21 +66,24 @@ export class ManageEventComponent {
 
   onSubmitEvent() {
     let minage: number = 1
+        console.log(this.eventForm.value.begin_datetime)    
+
     if (this.eventForm.value.min_age) {
-    minage = +this.eventForm.value.min_age}
+      minage = +this.eventForm.value.min_age
+    }
     this.event = 
     {
      "event_name": this.eventForm.value.event_name,
      "begin_datetime": this.formatDateTime(this.eventForm.value.begin_datetime, this.selectedStartHour, this.selectedStartMinute),
-     "finish_datetime": this.formatDateTime(this.eventForm.value.finish_datetime, this.selectedFinishHour, this.selectedFinishMinute),
+     "finish_datetime":this.formatDateTime(this.eventForm.value.finish_datetime, this.selectedFinishHour, this.selectedFinishMinute),
      "event_description": this.eventForm.value.event_description,
      "min_age": minage,
-     "location": this.eventForm.value.location,
+     "location": this.selectedLocation.id,
      "ticketType": this.eventForm.value.ticketType,
     }
     if (this.updating){
       this.apiservice.updateEvent(this.event).subscribe
-      (response => this.res = response)
+      (response => this.res = response) 
     }
     else {
       this.apiservice.postEvent(this.event).subscribe
