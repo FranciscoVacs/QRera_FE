@@ -27,16 +27,15 @@ export class ManageEventComponent {
   minutes: string[] = ['00', '05', '10', '15', '20', '25', '30', '35', '40', '45', '50', '55']
   event: any;
   res:any;
-  selectedLocation: any;
   locationList: any;
   variable: any;
-  loc: string = ''
   eventForm = new FormGroup ({
     event_name: new FormControl('', Validators.required),  
     begin_datetime: new FormControl('', Validators.required),
     finish_datetime: new FormControl('', Validators.required),
     event_description: new FormControl(''),
     min_age: new FormControl(''),
+    location: new FormControl('', Validators.required),
     ticketType: new FormControl('', Validators.required),
   })
 
@@ -52,8 +51,7 @@ export class ManageEventComponent {
         this.event = variable.data
         this.eventForm
           .patchValue({event_name: this.event.event_name, event_description: this.event.event_description, 
-          min_age: this.event.min_age, ticketType: this.event.ticketType[0].ticketType_name})
-        this.selectedLocation = this.event.location
+          min_age: this.event.min_age, location: this.event.location.location_name, ticketType: 'a'})
         console.log(this.event.begin_datetime)
         console.log(this.eventForm.value.begin_datetime)    
       })}
@@ -78,8 +76,8 @@ export class ManageEventComponent {
      "finish_datetime":this.formatDateTime(this.eventForm.value.finish_datetime, this.selectedFinishHour, this.selectedFinishMinute),
      "event_description": this.eventForm.value.event_description,
      "min_age": minage,
-     "location": this.selectedLocation.id,
-     "ticketType": this.eventForm.value.ticketType,
+     "location": this.eventForm.value.location,
+     "ticketType": this.eventForm.value.ticketType
     }
     if (this.updating){
       this.apiservice.updateEvent(this.event).subscribe
