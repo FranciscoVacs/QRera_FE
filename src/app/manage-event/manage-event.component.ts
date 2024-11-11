@@ -77,10 +77,10 @@ export class ManageEventComponent {
      "event_description": this.eventForm.value.event_description,
      "min_age": minage,
      "location": this.eventForm.value.location,
-     "ticketType": this.eventForm.value.ticketType
+
     }
     if (this.updating){
-      this.apiservice.updateEvent(this.event).subscribe
+      this.apiservice.updateEvent(this.event, this.eventID).subscribe
       (response => this.res = response) 
     }
     else {

@@ -23,8 +23,8 @@ export class ApiService {
     return this.httpClient.post(this.eventRoute, event);
   }
 
-  updateEvent(event: any) {
-    return this.httpClient.patch(this.eventRoute + `/${event.id}`, event);
+  updateEvent(event: any, id: number) {
+    return this.httpClient.patch(this.eventRoute + `/${id}`, event);
   }
 
   deleteEvent(id:number){
