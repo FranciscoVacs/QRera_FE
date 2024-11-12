@@ -35,5 +35,11 @@ export class HomeComponent {
         this.variable = response;
         this.eventList = this.variable.data
         })
+        this.apiservice.getLocations()
+        .subscribe(response => {
+        this.variable = response;
+        this.locationList = this.variable.data
+        })
+
         }
 }

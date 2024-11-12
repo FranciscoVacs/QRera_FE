@@ -1,2 +1,5 @@
-<p>events-by-city works!</p>
-<h1>{{cityID}}</h1>
+<h1>Eventos disponibles en {{city.city_name}}</h1>
+<div *ngFor="let loc of locations; index as i">
+<h1> Eventos disponibles en {{locations[i].location_name}}</h1>
+<app-list-of-events [eventList]="locations[i].event"></app-list-of-events>
+</div>

@@ -31,7 +31,6 @@ export class AutocompleteComponent {
   targetID: number = 0;
 
   ngOnInit() {
-
     this.apiservice.getCities().subscribe( response => {
       this.variable = response;
       this.cityList = this.variable.data;
@@ -68,15 +67,15 @@ export class AutocompleteComponent {
         this.targetRoute = '';
        }    
     }
-
+    this.onSearchPrompted()
   }
 
-  onSearchPrompted(event:any){
+  onSearchPrompted(){
     /* go to route with location/city's id. */
     if (this.targetRoute === '')
-    setTimeout(()=> this.router.navigate([`${this.targetRoute}`]));
+    setTimeout(()=> this.router.navigate([`${this.targetRoute}`]), 1000);
     else 
-    setTimeout(()=> this.router.navigate([`${this.targetRoute}`, {ID: this.targetID}]));
+    setTimeout(()=> this.router.navigate([`${this.targetRoute}`, {ID: this.targetID}]), 1000);
   }
 
 }

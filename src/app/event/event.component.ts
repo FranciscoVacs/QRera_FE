@@ -30,6 +30,7 @@ export class EventComponent {
   .subscribe(response => {
     this.variable = response; 
     this.event = this.variable.data
+    console.log(this.event)
   });
 
   /*
