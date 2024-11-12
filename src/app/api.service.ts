@@ -43,6 +43,10 @@ export class ApiService {
     return this.httpClient.get(this.baseRoute  + `/city`)
   }
 
+  getCity(id:number) {
+    return this.httpClient.get(this.baseRoute  + `/city` + `/${id}`)
+  }
+
   getTicketTypes() {
     return this.httpClient.get(this.baseRoute  + `/ticketType`);
   }

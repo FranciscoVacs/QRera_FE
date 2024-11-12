@@ -13,7 +13,6 @@ import {MatIconModule} from '@angular/material/icon';
 export class EventPreviewComponent {
   constructor(private router: Router, private apiservice: ApiService){}
  @Input() eventInput: any;
- @Input() locationInput: any;
   routename: any;
   variable: any;
   response: any;

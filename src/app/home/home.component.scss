@@ -1,9 +1,4 @@
 
-#events {
-  margin: 0 auto;
-  width: 70%;
-}
-
 footer {
   clear: both;
   background-color: black;
@@ -22,22 +17,6 @@ footer section {
   float: right;
 }
 
-app-event-preview.event {
-  margin: 1rem 1%;
-  width: 45%;
-  height: 33rem;
-  border: .15rem solid black;
-  border-radius: .6rem;
-  float: left;
-}
-
-app-event-preview.lastEvent {
-  margin: 1rem 25%;
-  width: 45%;
-  height: 33rem;
-  border: .15rem solid black;
-  border-radius: .6rem;
-}
 
 /**
 app-event-preview.event:hover {

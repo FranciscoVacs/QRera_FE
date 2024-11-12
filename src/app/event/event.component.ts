@@ -29,7 +29,8 @@ export class EventComponent {
   this.apiservice.getEvent(this.eventID)
   .subscribe(response => {
     this.variable = response; 
-    this.event = this.variable.data});
+    this.event = this.variable.data
+  });
 
   /*
   this.route.data.subscribe( 
@@ -37,13 +38,6 @@ export class EventComponent {
       this.event=data.event
     }
   )*/
-  }
-  onClick(){
-      this.apiservice.getEvent(this.eventID)
-  .subscribe(response => {
-    this.variable = response; 
-    console.log(this.variable)
-  });
   }
 
   setTicketType(chosenType: any){

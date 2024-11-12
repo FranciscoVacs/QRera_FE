@@ -2,10 +2,13 @@
 <app-autocomplete [locationList]="locationList">
 </app-autocomplete>
 </div>
+<app-list-of-events [eventList]="eventList"></app-list-of-events>
+<!--
 <section id="events">
   <app-event-preview [eventInput]="event" [locationInput]="findLocation(i)" *ngFor="let event of eventList; index as i; last as isLast; even as isEven"
     [class.lastEvent]="isLast && isEven" class="event"></app-event-preview>
 </section>
+-->
 <footer>
   <section>
     <img id="footlogo" src="assets/bohemia-logo.png" alt="logo">
