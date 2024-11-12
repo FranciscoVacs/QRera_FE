@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { ApiService } from '../api.service.js';
+import { ApiService } from '../api.service';
 import { NgIf, NgSwitch, NgSwitchCase, NgFor } from '@angular/common';
 
 @Component({
@@ -11,6 +11,8 @@ import { NgIf, NgSwitch, NgSwitchCase, NgFor } from '@angular/common';
   styleUrl: './event.component.scss'
 })
 export class EventComponent {
+  constructor(private route: ActivatedRoute, private apiservice: ApiService){}
+
   event: any;
   eventID: any;
   ticketAmount: number = 3;
@@ -18,7 +20,6 @@ export class EventComponent {
   variable: any;
   amounts: number[] = [1,2,3,4,5,6];
   state: number = 0;
-  constructor(private route: ActivatedRoute, private apiservice: ApiService){}
 
   ngOnInit(){
   this.route.params.subscribe( params => {

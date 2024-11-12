@@ -7,39 +7,44 @@ import { Injectable } from '@angular/core';
 export class ApiService {
 
   constructor(private httpClient: HttpClient) { }
+  baseRoute = 'http://localhost:3000/api';
   eventRoute = 'http://localhost:3000/api/event';
   locationRoute = 'http://localhost:3000/api/location';
   ticketTypeRoute = 'http://localhost:3000/api/ticketType';
   actualEvent: any;
   
   getEvents() {
-    return this.httpClient.get(this.eventRoute);
+    return this.httpClient.get(this.baseRoute + `/event`);
   }
 
   getEvent(id: number) {
-    return this.httpClient.get(this.eventRoute + `/${id}`);
+    return this.httpClient.get(this.baseRoute  + `/event` + `/${id}`);
   }
   postEvent(event: any) {
-    return this.httpClient.post(this.eventRoute, event);
+    return this.httpClient.post(this.baseRoute  + `/event`, event);
   }
 
   updateEvent(event: any, id: number) {
-    return this.httpClient.patch(this.eventRoute + `/${id}`, event);
+    return this.httpClient.patch(this.baseRoute  + `/event` + `/${id}`, event);
   }
 
   deleteEvent(id:number){
-    return this.httpClient.delete(this.eventRoute + `/${id}`)
+    return this.httpClient.delete(this.baseRoute  + `/event` + `/${id}`)
   }
   getLocations() {
-    return this.httpClient.get(this.locationRoute);
+    return this.httpClient.get(this.baseRoute  + `/location`);
   }
 
   getLocation(id: number) {
-    return this.httpClient.get(this.locationRoute + `/${id}`);
+    return this.httpClient.get(this.baseRoute  + `/location` + `/${id}`);
+  }
+
+  getCities() {
+    return this.httpClient.get(this.baseRoute  + `/city`)
   }
 
   getTicketTypes() {
-    return this.httpClient.get(this.ticketTypeRoute);
+    return this.httpClient.get(this.baseRoute  + `/ticketType`);
   }
 
 }

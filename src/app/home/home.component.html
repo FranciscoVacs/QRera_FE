@@ -1,18 +1,6 @@
 <div>
-
-<form class="example-form">
-  <mat-form-field class="example-full-width">
-    <mat-label>Number</mat-label>
-    <input type="text" placeholder="Pick one" aria-label="Number" matInput [formControl]="myControl"
-      [matAutocomplete]="auto">
-    <mat-autocomplete #auto="matAutocomplete">
-      @for (option of options; track option) {
-      <mat-option [value]="option">{{option}}</mat-option>
-      }
-    </mat-autocomplete>
-  </mat-form-field>
-</form>
-
+<app-autocomplete [locationList]="locationList">
+</app-autocomplete>
 </div>
 <section id="events">
   <app-event-preview [eventInput]="event" [locationInput]="findLocation(i)" *ngFor="let event of eventList; index as i; last as isLast; even as isEven"

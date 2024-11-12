@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import {Router } from '@angular/router';
-import { ApiService } from '../api.service.js';
+import { ApiService } from '../api.service';
 import {MatIconModule} from '@angular/material/icon';
 
 @Component({

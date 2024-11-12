@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ReactiveFormsModule, FormControl, FormGroup, Validators, FormsModule} from '@angular/forms';
-import { ApiService } from '../api.service.js';
+import { ApiService } from '../api.service';
 import {MatDatepickerModule} from '@angular/material/datepicker'; 
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
