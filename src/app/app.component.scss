@@ -1,88 +1,65 @@
-ul {
-  list-style: none;
-  padding: 0px;
-  margin: 0px;
-}
-
-a {
-  text-decoration: none;
-}
-
-li {
-  float: left;
-  margin: 0 6.5rem;
-}
-
 nav {
   height: 5rem;
-/*  background-color: black; */
+  background-color: rgb(233, 41, 150);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 2rem;
 }
 
-.navButton{
-  color: white(255, 255, 255);
-}
 
 #logo {
   height: 5rem;
-  float: left;
   cursor: pointer;
 }
 
-#logbuttons button {
-  float: right;
-}
-
-#topbar {
-  padding-top: 2rem;
-  display: flex;
-  align-items: center;
-}
-
-#events {
-  margin: 0 auto;
-  width: 70%;
-  background-color: white;
-}
-
-#sthd {
-  margin: 0;
-}
-
-#flogo {
-  width: 4.8rem;
-}
-
-footer section {
-  float: right;
-}
-
-hr {
-  margin: 0;
-}
-
-.button {
-  margin: 0 .5rem;
-}
-
-#account {
-  border-radius: 0;
-  width: 70%;
-}
-
-#nav {
-  width: 40%;
-}
 
 .tab-bar {
   display: flex;
   align-items: center;
+  justify-content: space-between;
+  width: 100%;
 }
+
 
 #mat-tab-group {
-  width: 70%;
+  flex-grow: 1;
+  margin-right: 2rem;
 }
 
-.accountbutton {
-  width: 30%;
-  text-align: right;
+
+::ng-deep .mat-tab-link {
+  color: white !important;
 }
+
+
+::ng-deep .mat-tab-link:hover {
+  color: #ffcc00 !important;
+}
+
+
+::ng-deep .mat-tab-link.mat-tab-label-active {
+  color: #ffcc00 !important;
+}
+
+
+.accountbutton {
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
+#account {
+  background-color: rgb(233, 41, 150);
+  color: white;
+  border-radius: 0;
+  padding: 1rem 2rem;
+  font-size: 1.2rem;
+  border: 2px solid white;
+}
+
+::ng-deep .mat-tab-body-content,
+::ng-deep .mat-tab-body-content * {
+  color: white !important;
+}
+

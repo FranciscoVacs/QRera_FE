@@ -1,3 +1,32 @@
+/* Contenedor principal para el texto y la barra de búsqueda */
+.search-container {
+  display: flex;
+  flex-direction: column; /* Alinea los elementos en columna */
+  align-items: center; /* Centra los elementos horizontalmente */
+  justify-content: center; /* Centra los elementos verticalmente */
+  position: absolute; /* Posición absoluta para centrar en toda la pantalla */
+  top: 50%; /* Ubica el contenedor verticalmente en el medio */
+  left: 50%; /* Centra horizontalmente */
+  transform: translate(-50%, -50%); /* Ajuste para un centro perfecto */
+  width: 100%;
+  text-align: center;
+  z-index: 1000; /* Asegura que esté por encima de otros elementos */
+}
+
+/* Estilo para el texto que está encima de la barra de búsqueda */
+.search-title {
+  font-size: 2rem;
+  color: rgb(0, 0, 0);
+  margin-bottom: 1rem; /* Espacio entre el texto y la barra de búsqueda */
+}
+
+/* Estilo para el componente de búsqueda */
+app-autocomplete {
+  margin-top: 1rem; /* Asegura que la barra de búsqueda esté directamente debajo del texto */
+  z-index: 1000; /* Asegura que el componente de búsqueda esté por encima de otros elementos */
+}
+
+/* Footer */
 footer {
   display: flex;
   align-items: center;
@@ -8,13 +37,8 @@ footer {
   transform: translateX(-50%);
   width: 100%;
   height: 5.25rem;
-  background-color: black;
+  background-color: rgb(233, 41, 150);
   z-index: 1000; /* Asegura que el footer esté por encima de otros elementos */
-}
-
-#support {
-  color: white;
-  text-align: center;
 }
 
 #footlogo {
