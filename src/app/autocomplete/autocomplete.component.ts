@@ -6,13 +6,15 @@ import {AsyncPipe} from '@angular/common';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatButtonModule} from '@angular/material/button';
+import {MatIconModule} from '@angular/material/icon';
 import { ApiService } from '../api.service';
 import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-autocomplete',
   standalone: true,
-  imports: [FormsModule, MatFormFieldModule, MatInputModule, MatAutocompleteModule, ReactiveFormsModule, AsyncPipe],
+  imports: [FormsModule, MatFormFieldModule, MatInputModule, MatAutocompleteModule, ReactiveFormsModule, MatButtonModule, MatIconModule, AsyncPipe],
   templateUrl: './autocomplete.component.html',
   styleUrl: './autocomplete.component.scss'
 })
@@ -71,6 +73,7 @@ export class AutocompleteComponent {
   }
 
   onSearchPrompted(){
+    console.log(';l;lklklkjlhiugopouaj;dwsj')
     /* go to route with location/city's id. */
     if (this.targetRoute === '')
     setTimeout(()=> this.router.navigate([`${this.targetRoute}`]), 1000);

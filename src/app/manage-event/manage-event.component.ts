@@ -5,12 +5,14 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {MatSelectModule} from '@angular/material/select';
+import {MatIconModule} from '@angular/material/icon';
+import {MatButtonModule} from '@angular/material/button';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-manage-event',
   standalone: true,
-  imports: [ReactiveFormsModule, MatDatepickerModule, MatFormFieldModule, MatInputModule, MatSelectModule, FormsModule],
+  imports: [ReactiveFormsModule, MatDatepickerModule, MatFormFieldModule, MatInputModule, MatSelectModule, MatIconModule, MatButtonModule, FormsModule],
   templateUrl: './manage-event.component.html',
   styleUrl: './manage-event.component.scss',
 
@@ -36,7 +38,7 @@ export class ManageEventComponent {
     event_description: new FormControl(''),
     min_age: new FormControl(''),
     location: new FormControl('', Validators.required),
-    ticketType: new FormControl('', Validators.required),
+    ticketType: new FormControl(''),
   })
 
   ngOnInit(){

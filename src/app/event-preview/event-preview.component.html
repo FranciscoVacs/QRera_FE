@@ -5,5 +5,11 @@
 <p class="content">{{eventInput.event_description}} </p>
 <p class="content">{{eventInput.begin_datetime}}</p>
 </a>
-<mat-icon (click)="onDelete()" class="material-symbols-outlined">delete</mat-icon>
-<mat-icon (click)="onUpdate()" class="material-symbols-outlined">cached</mat-icon>
+<div id="i">
+  <button class="optButton" >
+    <mat-icon (click)="onDelete()" class="material-symbols-outlined">delete</mat-icon>
+  </button>
+  <button class="optButton" >
+    <mat-icon (click)="onUpdate()" class="material-symbols-outlined">cached</mat-icon>
+  </button>
+</div>

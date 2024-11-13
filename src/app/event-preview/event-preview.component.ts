@@ -2,11 +2,12 @@ import { Component, Input } from '@angular/core';
 import {Router } from '@angular/router';
 import { ApiService } from '../api.service';
 import {MatIconModule} from '@angular/material/icon';
+import {MatButtonModule} from '@angular/material/button';
 
 @Component({
   selector: 'app-event-preview',
   standalone: true,
-  imports: [MatIconModule],
+  imports: [MatIconModule, MatButtonModule],
   templateUrl: './event-preview.component.html',
   styleUrl: './event-preview.component.scss'
 })

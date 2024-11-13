@@ -80,12 +80,15 @@
     </mat-form-field>
 
   <br>
-  <mat-form-field>
-    <mat-label>Tipos de ticket</mat-label>
-    <input matInput formControlName="ticketType" />
-  </mat-form-field>
+
+  <h1>Tipos de ticket</h1>
+  
+  <button mat-fab aria-label="Example icon button with a delete icon">
+    <mat-icon class="material-symbols-outlined">add</mat-icon>
+  </button>
+
   <br>
-  <button type="submit" [disabled]="!eventForm.valid">
+  <button mat-stroked-button type="submit" [disabled]="!eventForm.valid">
     Cargar
   </button>
 </form>
