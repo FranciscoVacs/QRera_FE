@@ -8,11 +8,12 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
 import { ActivatedRoute } from '@angular/router';
+import { ManageTickettypesComponent } from '../manage-tickettypes/manage-tickettypes.component.js';
 
 @Component({
   selector: 'app-manage-event',
   standalone: true,
-  imports: [ReactiveFormsModule, MatDatepickerModule, MatFormFieldModule, MatInputModule, MatSelectModule, MatIconModule, MatButtonModule, FormsModule],
+  imports: [ReactiveFormsModule, MatDatepickerModule, MatFormFieldModule, MatInputModule, MatSelectModule, MatIconModule, MatButtonModule, FormsModule, ManageTickettypesComponent],
   templateUrl: './manage-event.component.html',
   styleUrl: './manage-event.component.scss',
 
@@ -29,7 +30,9 @@ export class ManageEventComponent {
   minutes: string[] = ['00', '05', '10', '15', '20', '25', '30', '35', '40', '45', '50', '55']
   event: any;
   res:any;
+  ticketList: any;
   locationList: any;
+  selectedFile: any;
   variable: any;
   eventForm = new FormGroup ({
     event_name: new FormControl('', Validators.required),  
@@ -64,9 +67,18 @@ export class ManageEventComponent {
     })
   }
 
+  onFileSelected(event: any){
+    console.log(event)
+    this.selectedFile = event.target.files[0]
+  }
+
+  updateTicketList(ticketList: any){
+    this.ticketList = ticketList
+    console.log(this.ticketList)
+  }
+
   onSubmitEvent() {
     let minage: number = 1
-        console.log(this.eventForm.value.begin_datetime)    
 
     if (this.eventForm.value.min_age) {
       minage = +this.eventForm.value.min_age
@@ -79,8 +91,9 @@ export class ManageEventComponent {
      "event_description": this.eventForm.value.event_description,
      "min_age": minage,
      "location": this.eventForm.value.location,
-
+     "ticketType": this.ticketList
     }
+    console.log(this.event)
     if (this.updating){
       this.apiservice.updateEvent(this.event, this.eventID).subscribe
       (response => this.res = response) 
@@ -98,4 +111,5 @@ export class ManageEventComponent {
    let dateString: string = `${date.getFullYear().toString()}-${month}-${day} ${selectedHour}:${selectedMinute}:00`
    return dateString
   }
+
 }
