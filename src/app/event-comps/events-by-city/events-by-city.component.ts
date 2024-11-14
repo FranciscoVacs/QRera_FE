@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { ApiService } from '../api.service.js';
 import { ListOfEventsComponent } from '../list-of-events/list-of-events.component.js';
 import {CommonModule} from '@angular/common';
+import { CityService } from '../../services/city.service.js';
 
 @Component({
   selector: 'app-events-by-city',
@@ -12,11 +12,10 @@ import {CommonModule} from '@angular/common';
   styleUrl: './events-by-city.component.scss'
 })
 export class EventsByCityComponent {
-  constructor(private route: ActivatedRoute, private apiservice: ApiService){}
+  constructor(private route: ActivatedRoute, private cityService: CityService){}
 
   cityID: number = 0;
   city: any;
-  variable: any;
   eventList: any[] = [];
   locations: any[] = [];
 
@@ -25,10 +24,9 @@ export class EventsByCityComponent {
     this.cityID = params['ID'];
   })
 
-  this.apiservice.getCity(this.cityID).subscribe(res => 
+  this.cityService.getCityById(this.cityID).subscribe(city => 
     {
-      this.variable = res;
-      this.city = this.variable.data
+      this.city = city
       this.locations = this.city.location
     })
 }

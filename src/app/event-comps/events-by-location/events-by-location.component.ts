@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { ApiService } from '../api.service.js';
 import { ListOfEventsComponent } from '../list-of-events/list-of-events.component.js';
+import { LocationService } from '../../services/location.service.js';
 
 @Component({
   selector: 'app-events-by-location',
@@ -11,11 +11,10 @@ import { ListOfEventsComponent } from '../list-of-events/list-of-events.componen
   styleUrl: './events-by-location.component.scss'
 })
 export class EventsByLocationComponent {
-  constructor(private route: ActivatedRoute, private apiservice: ApiService){}
+  constructor(private route: ActivatedRoute, private locationService: LocationService){}
 
   locationID: number = 0;
   location: any;
-  variable: any;
   eventList: any[] = [];
 
   ngOnInit(){
@@ -23,11 +22,11 @@ export class EventsByLocationComponent {
     this.locationID = params['ID'];
   })
 
-  this.apiservice.getLocation(this.locationID).subscribe(res => 
+  this.locationService.getLocationById(this.locationID)
+  .subscribe((location:any) => 
     {
-      this.variable = res;
-      this.location = this.variable.data
-      this.eventList = this.variable.data.event
+      this.location = location
+      this.eventList = location.event
     })
   }
 }

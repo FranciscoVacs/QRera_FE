@@ -1,8 +1,8 @@
 import { Component, Input } from '@angular/core';
 import {Router } from '@angular/router';
-import { ApiService } from '../api.service';
 import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
+import { EventService } from '../../services/event.service.js';
 
 @Component({
   selector: 'app-event-preview',
@@ -12,20 +12,17 @@ import {MatButtonModule} from '@angular/material/button';
   styleUrl: './event-preview.component.scss'
 })
 export class EventPreviewComponent {
-  constructor(private router: Router, private apiservice: ApiService){}
+  constructor(private router: Router, private eventService: EventService){}
  @Input() eventInput: any;
   routename: any;
-  variable: any;
-  response: any;
 
   onClicked(){
     setTimeout(()=> this.router.navigate([`event`, {eventID: this.eventInput.id}]));
   }
 
   onDelete(){
-    this.apiservice.deleteEvent(this.eventInput.id)
+    this.eventService.deleteEvent(this.eventInput.id)
     .subscribe(response => {
-    this.response = response;
     alert("Evento eliminado")
     })
   }

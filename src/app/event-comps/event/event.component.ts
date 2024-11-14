@@ -1,17 +1,17 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { ApiService } from '../api.service';
 import { ReactiveFormsModule, FormGroup, FormControl, Validators } from '@angular/forms';
 import { NgIf, NgSwitch, NgSwitchCase, NgFor } from '@angular/common';
 import {MatListModule} from '@angular/material/list';
 import { MatFormField } from '@angular/material/form-field';
 import { MatSelect } from '@angular/material/select';
-import { ManageTickettypesComponent } from '../manage-tickettypes/manage-tickettypes.component.js';
+import { ManageTickettypesComponent } from '../../manage-tickettypes/manage-tickettypes.component.js';
 import { MatLabel } from '@angular/material/form-field';
 import { MatOption } from '@angular/material/select';
 import {MatStepperModule} from '@angular/material/stepper';
 import {MatButtonModule} from '@angular/material/button';
 import {MatInputModule} from '@angular/material/input';
+import { EventService } from '../../services/event.service.js';
 
 @Component({
   selector: 'app-event',
@@ -21,13 +21,12 @@ import {MatInputModule} from '@angular/material/input';
   styleUrl: './event.component.scss'
 })
 export class EventComponent {
-  constructor(private route: ActivatedRoute, private apiservice: ApiService){}
+  constructor(private route: ActivatedRoute, private eventService: EventService){}
 
   event: any;
   eventID: any;
   ticketAmount: any;
   selectedTicketType: any;
-  variable: any;
   amounts: number[] = [1,2,3,4,5];
   state: number = 0;
 
@@ -44,10 +43,9 @@ export class EventComponent {
     this.eventID = params['eventID'];
    })
 
-  this.apiservice.getEvent(this.eventID)
-  .subscribe(response => {
-    this.variable = response; 
-    this.event = this.variable.data
+  this.eventService.getEventById(this.eventID)
+  .subscribe(event => {
+    this.event = event
   });
   }
 

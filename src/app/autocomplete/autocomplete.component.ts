@@ -8,8 +8,8 @@ import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
-import { ApiService } from '../api.service';
 import { Router } from '@angular/router';
+import { CityService } from '../services/city.service.js';
 
 @Component({
   selector: 'app-autocomplete',
@@ -19,13 +19,12 @@ import { Router } from '@angular/router';
   styleUrl: './autocomplete.component.scss'
 })
 export class AutocompleteComponent {
-  constructor(private router: Router, private apiservice: ApiService){}
+  constructor(private router: Router, private cityService: CityService){}
 
   @Input() locationList: any;
   myControl = new FormControl('');
   options: string[] = [];
   filteredOptions?: Observable<string[]>;
-  variable: any;
   cityList: any;
   optionName: string = '';
   targetRoute: string ='';
@@ -33,9 +32,8 @@ export class AutocompleteComponent {
   targetID: number = 0;
 
   ngOnInit() {
-    this.apiservice.getCities().subscribe( response => {
-      this.variable = response;
-      this.cityList = this.variable.data;
+    this.cityService.getCities().subscribe( cities => {
+      this.cityList = cities;
       this.options = this.cityList.map((city: any) => city.city_name)
       .concat(this.locationList.map((location: any) => location.location_name));
     }) 

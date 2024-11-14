@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { ReactiveFormsModule, FormControl, FormGroup, Validators, FormsModule} from '@angular/forms';
-import { ApiService } from '../api.service';
 import {MatDatepickerModule} from '@angular/material/datepicker'; 
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
@@ -9,7 +8,10 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
 import { ActivatedRoute } from '@angular/router';
 import { ManageTickettypesComponent } from '../manage-tickettypes/manage-tickettypes.component.js';
-import { HttpClient } from '@angular/common/http';
+import { TicketTypeService } from '../services/ticket-type.service.js';
+import { EventService } from '../services/event.service.js';
+import { LocationService } from '../services/location.service.js';
+import { DjService } from '../services/dj.service.js';
 
 @Component({
   selector: 'app-manage-event',
@@ -20,7 +22,15 @@ import { HttpClient } from '@angular/common/http';
 
 })
 export class ManageEventComponent {
-  constructor(private route: ActivatedRoute, private apiservice: ApiService, private http: HttpClient){}
+  constructor
+  (
+    private route: ActivatedRoute, 
+    private ticketTypeService: TicketTypeService, 
+    private locationService: LocationService, 
+    private djService: DjService, 
+    private eventService: EventService
+  ){}
+
   selectedStartHour: string = '00'
   selectedStartMinute: string = '00'
   selectedFinishHour: string = '00'
@@ -31,7 +41,7 @@ export class ManageEventComponent {
   hours: string[] = ['00','01','02','03','04','05','06','07','08','09','10','11','12','13','14','15','16','17','18','19','20','21','22','23']
   minutes: string[] = ['00', '05', '10', '15', '20', '25', '30', '35', '40', '45', '50', '55']
   event: any;
-  loadedEvent:any;
+  postedEvent:any;
   ticketList: any;
   locationList: any;
   djList: any;
@@ -55,23 +65,20 @@ export class ManageEventComponent {
       this.eventID = params['eventID']
     })
     if (this.updating){
-      this.apiservice.getEvent(this.eventID)
-      .subscribe( (response) => {
-        const variable: any = response
-        this.event = variable.data
+      this.eventService.getEventById(this.eventID)
+      .subscribe( (event) => {
+        this.event = event
         this.eventForm
           .patchValue({event_name: this.event.event_name, event_description: this.event.event_description, 
           min_age: this.event.min_age, location: this.event.location.location_name, ticketType: 'a'})
       })}
-    this.apiservice.getLocations()
-    .subscribe(response => {
-    this.variable = response;
-    this.locationList = this.variable.data
+    this.locationService.getLocations()
+    .subscribe(locations => {
+    this.locationList = locations
     })
-    this.apiservice.getDJs()
-    .subscribe(response => {
-    this.variable = response;
-    this.djList = this.variable.data
+    this.djService.getDJs()
+    .subscribe(DJs => {
+    this.djList = DJs
     })
   }
 
@@ -114,14 +121,14 @@ export class ManageEventComponent {
     formdata.append('dj',this.event.dj)
 
     if (this.updating){
-      this.apiservice.updateEvent(formdata, this.eventID).subscribe
-      (response => {let res = response; alert('Evento actualizado con éxito')}) 
+      this.eventService.updateEvent(formdata, this.eventID).subscribe
+      (res => {alert('Evento actualizado con éxito')}) 
     }
     else {
-      this.apiservice.postEvent(formdata).subscribe
-      (response=> 
+      this.eventService.postEvent(formdata).subscribe
+      (postedEvent=> 
         {
-        this.loadedEvent = response; 
+        this.postedEvent = postedEvent; 
         this.postTicketTypes()
       }) 
     } 
@@ -132,12 +139,11 @@ export class ManageEventComponent {
       this.ticketList.forEach((ticket: any, index: number) => {
       ticket.begin_datetime = this.formatDateTime(ticket.begin_datetime, '00', '00')
       ticket.finish_datetime = this.formatDateTime(ticket.finish_datetime, '00', '00')
-      ticket.event = this.loadedEvent.data.id;
-      this.apiservice.postTicketType(ticket, this.loadedEvent.data.id).subscribe
+      ticket.event = this.postedEvent.id;
+      this.ticketTypeService.postTicketType(ticket, this.postedEvent.id).subscribe
           
-      (response => 
+      (ticketType => 
         { 
-          let res = response; 
           if (index+1===this.ticketList.length){alert('Evento cargado con éxito')}
         })
       });

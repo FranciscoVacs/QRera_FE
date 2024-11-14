@@ -1,11 +1,10 @@
 import { Component } from '@angular/core';
-import { ApiService } from '../api.service';
 import { JsonPipe, CommonModule } from '@angular/common';
-import { RouterOutlet } from '@angular/router';
-import { EventPreviewComponent } from '../event-preview/event-preview.component';
+import { EventPreviewComponent } from '../event-comps/event-preview/event-preview.component';
 import { AutocompleteComponent } from '../autocomplete/autocomplete.component';
-import { Router } from '@angular/router';
-import { ListOfEventsComponent } from '../list-of-events/list-of-events.component.js';
+import { ListOfEventsComponent } from '../event-comps/list-of-events/list-of-events.component.js';
+import { EventService } from '../services/event.service.js';
+import { LocationService } from '../services/location.service.js';
 
 @Component({
   selector: 'app-home',
@@ -15,14 +14,11 @@ import { ListOfEventsComponent } from '../list-of-events/list-of-events.componen
   styleUrl: './home.component.scss'
 })
 export class HomeComponent {
-  constructor(private apiservice: ApiService){}
+  constructor(private eventService: EventService, private locationService: LocationService){}
   
-  bool = true;
-  variable: any;
   eventsLoaded: boolean = false;
   eventList: any = [];
   locationList: any = [];
-  returnLocation: any;
 
     ngOnInit(){
       this.loadEvents();
@@ -30,16 +26,13 @@ export class HomeComponent {
     }
 
     loadEvents(){
-        this.apiservice.getEvents()
-        .subscribe(response => {
-        this.variable = response;
-        this.eventList = this.variable.data
-        })
-        this.apiservice.getLocations()
-        .subscribe(response => {
-        this.variable = response;
-        this.locationList = this.variable.data
-        })
-
-        }
+      this.eventService.getEvents()
+      .subscribe(events => {
+      this.eventList = events
+      })
+      this.locationService.getLocations()
+      .subscribe(locations => {
+      this.locationList = locations
+      })
+    }
 }

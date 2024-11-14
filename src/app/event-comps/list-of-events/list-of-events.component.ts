@@ -1,6 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { ApiService } from '../api.service.js';
-import { EventPreviewComponent } from '../event-preview/event-preview.component';
+import { EventPreviewComponent } from '../event-preview/event-preview.component.js';
 import {CommonModule} from '@angular/common';
 
 @Component({
@@ -11,7 +10,7 @@ import {CommonModule} from '@angular/common';
   styleUrl: './list-of-events.component.scss'
 })
 export class ListOfEventsComponent {
-  constructor(private apiservice: ApiService){}
+  constructor(){}
 
 
   @Input() eventList: any = [];

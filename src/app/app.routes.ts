@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 import { Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component.js';
-import { EventComponent } from './event/event.component.js';
+import { EventComponent } from './event-comps/event/event.component.js';
 import { ManageEventComponent } from './manage-event/manage-event.component.js';
-import { EventsByLocationComponent } from './events-by-location/events-by-location.component.js';
-import { EventsByCityComponent } from './events-by-city/events-by-city.component.js';
+import { EventsByLocationComponent } from './event-comps/events-by-location/events-by-location.component.js';
+import { EventsByCityComponent } from './event-comps/events-by-city/events-by-city.component.js';
 
 
 export const routes: Routes = [
