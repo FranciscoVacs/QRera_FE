@@ -1,4 +1,4 @@
-import { Component, signal, Output, EventEmitter } from '@angular/core';
+import { Component, signal, Output, Input, EventEmitter } from '@angular/core';
 import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
 import { ReactiveFormsModule, FormControl, FormGroup, Validators, FormsModule} from '@angular/forms';
@@ -22,6 +22,7 @@ export class ManageTickettypesComponent {
   readonly panelOpenState = signal(false);
   tickettypes: any[] = [];
   isFormActivated: boolean = false;
+  @Input() isEditable: boolean = true;
   @Output() ticketListEvent = new EventEmitter<any>();
 
   tickettypeForm = new FormGroup ({

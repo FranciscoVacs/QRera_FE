@@ -80,9 +80,21 @@
     </mat-form-field>
   <br>
 
+    <mat-form-field>
+      <mat-label>DJ </mat-label>
+      <mat-select formControlName="dj">
+        @for (dj of djList; track dj) {
+        <mat-option [value]="dj.id">{{dj.dj_name}}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+    <br>
+
+
+
   <h3>Subir foto del evento</h3>
   <input type="file" (change)="onFileSelected($event)">
-  
+
   <h3>Tipos de ticket</h3>
   <app-manage-tickettypes (ticketListEvent)="updateTicketList($event)"></app-manage-tickettypes>
   <br>

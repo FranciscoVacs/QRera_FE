@@ -14,7 +14,7 @@
   </mat-accordion>
 </div>
 
-<button mat-fab (click)="toggleForm()" *ngIf="!isFormActivated" type="button">
+<button mat-fab (click)="toggleForm()" *ngIf="!isFormActivated && isEditable" type="button">
   <mat-icon class="material-symbols-outlined">add</mat-icon>
 </button>
 

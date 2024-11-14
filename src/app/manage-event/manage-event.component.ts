@@ -33,6 +33,7 @@ export class ManageEventComponent {
   res:any;
   ticketList: any;
   locationList: any;
+  djList: any;
   selectedFile: any;
   variable: any;
   eventForm = new FormGroup ({
@@ -42,6 +43,7 @@ export class ManageEventComponent {
     event_description: new FormControl(''),
     min_age: new FormControl(''),
     location: new FormControl('', Validators.required),
+    dj: new FormControl('', Validators.required),
     ticketType: new FormControl(''),
   })
 
@@ -66,6 +68,11 @@ export class ManageEventComponent {
     this.variable = response;
     this.locationList = this.variable.data
     })
+    this.apiservice.getDJs()
+    .subscribe(response => {
+    this.variable = response;
+    this.djList = this.variable.data
+    })
   }
 
   onFileSelected(event: any){
@@ -74,6 +81,7 @@ export class ManageEventComponent {
 
   updateTicketList(ticketList: any){
     this.ticketList = ticketList
+    console.log(this.ticketList)
   }
 
   onSubmitEvent() {
@@ -90,6 +98,7 @@ export class ManageEventComponent {
      "event_description": this.eventForm.value.event_description,
      "min_age": minage,
      "location": this.eventForm.value.location,
+     "dj": this.eventForm.value.dj,
      "ticketType": this.ticketList
     }
     let formdata = new FormData();
@@ -100,7 +109,7 @@ export class ManageEventComponent {
     formdata.append('min_age',this.event.min_age)
     formdata.append('cover_photo', this.selectedFile, this.selectedFile.name);
     formdata.append('location',this.event.location)
-    formdata.append('dj','1')
+    formdata.append('dj',this.event.dj)
     formdata.append('ticketType',this.event.ticketType)
 
     if (this.updating){

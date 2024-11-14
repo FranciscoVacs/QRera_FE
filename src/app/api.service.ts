@@ -48,4 +48,7 @@ export class ApiService {
     return this.httpClient.get(this.baseRoute  + `/ticketType`);
   }
 
+  getDJs() {
+    return this.httpClient.get(this.baseRoute  + `/dj`);
+  }
 }

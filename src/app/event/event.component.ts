@@ -2,11 +2,12 @@ import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ApiService } from '../api.service';
 import { NgIf, NgSwitch, NgSwitchCase, NgFor } from '@angular/common';
+import { ManageTickettypesComponent } from '../manage-tickettypes/manage-tickettypes.component.js';
 
 @Component({
   selector: 'app-event',
   standalone: true,
-  imports: [NgIf, NgSwitch, NgSwitchCase, NgFor],
+  imports: [ManageTickettypesComponent, NgIf, NgSwitch, NgSwitchCase, NgFor],
   templateUrl: './event.component.html',
   styleUrl: './event.component.scss'
 })
@@ -30,6 +31,7 @@ export class EventComponent {
   .subscribe(response => {
     this.variable = response; 
     this.event = this.variable.data
+    console.log(this.variable)
   });
   }
 
