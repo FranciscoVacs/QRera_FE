@@ -25,12 +25,13 @@ export class ManageEventComponent {
   selectedStartMinute: string = '00'
   selectedFinishHour: string = '00'
   selectedFinishMinute: string = '00'
+  atLeastOneticket: boolean = true;
   updating: boolean = false;
   eventID: number = 0;
   hours: string[] = ['00','01','02','03','04','05','06','07','08','09','10','11','12','13','14','15','16','17','18','19','20','21','22','23']
   minutes: string[] = ['00', '05', '10', '15', '20', '25', '30', '35', '40', '45', '50', '55']
   event: any;
-  res:any;
+  loadedEvent:any;
   ticketList: any;
   locationList: any;
   djList: any;
@@ -81,7 +82,9 @@ export class ManageEventComponent {
 
   updateTicketList(ticketList: any){
     this.ticketList = ticketList
-    console.log(this.ticketList)
+    if (this.ticketList && this.atLeastOneticket){
+      this.eventForm.patchValue({ticketType: 'Value'})
+    }
   }
 
   onSubmitEvent() {
@@ -90,6 +93,7 @@ export class ManageEventComponent {
     if (this.eventForm.value.min_age) {
       minage = +this.eventForm.value.min_age
     }
+    
     this.event = 
     {
      "event_name": this.eventForm.value.event_name,
@@ -99,7 +103,6 @@ export class ManageEventComponent {
      "min_age": minage,
      "location": this.eventForm.value.location,
      "dj": this.eventForm.value.dj,
-     "ticketType": this.ticketList
     }
     let formdata = new FormData();
     formdata.append('event_name', this.event.event_name)
@@ -110,17 +113,21 @@ export class ManageEventComponent {
     formdata.append('cover_photo', this.selectedFile, this.selectedFile.name);
     formdata.append('location',this.event.location)
     formdata.append('dj',this.event.dj)
-    formdata.append('ticketType',this.event.ticketType)
 
     if (this.updating){
       this.apiservice.updateEvent(formdata, this.eventID).subscribe
-      (response => this.res = response) 
+      (response => {let res = response}) 
     }
     else {
-      console.log(this.event)
+      console.log(formdata)
       this.apiservice.postEvent(formdata).subscribe
-      (response=> this.res = response) 
-    }
+      (response=> {this.loadedEvent = response; console.log(this.loadedEvent)}) 
+/*
+      this.ticketList.forEach((ticket: any) => {
+        this.apiservice.postTicketType(ticket).subscribe
+        (response => {console.log(this.loadedEvent); ticket.id = this.ticketList.this.loadedEvent.data.id; let res = response; console.log(response)})
+      });*/
+    } 
     alert(this.event.event_name) 
   }
 
