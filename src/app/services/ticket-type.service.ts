@@ -8,10 +8,6 @@ export class TicketTypeService {
 
   constructor(private apiService: ApiService) { }
 
-  getTicketTypes() {
-    return this.apiService.get(`/ticketType`);
-  }
-
   postTicketType(ticketType: any, id: number) {
     return this.apiService.post(`/event` + `/${id}` + `/ticketType` , ticketType);
   }

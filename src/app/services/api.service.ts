@@ -18,7 +18,7 @@ export class ApiService {
   }
 
   patch(path: string, body: any){
-    return this.httpClient.post(this.baseRoute + path, body)
+    return this.httpClient.patch(this.baseRoute + path, body)
   }
 
   delete(path: string){
