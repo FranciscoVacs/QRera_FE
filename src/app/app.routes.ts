@@ -9,9 +9,9 @@ import { EventsByCityComponent } from './events-by-city/events-by-city.component
 
 export const routes: Routes = [
   {path: '', title: 'Home',component: HomeComponent},
-  {path: 'event', component: EventComponent},
-  {path: 'manageevent', component: ManageEventComponent},
-  {path: 'location', component: EventsByLocationComponent},
-  {path: 'city', component: EventsByCityComponent}, 
+  {path: 'event', title: 'Event page', component: EventComponent},
+  {path: 'manageevent', title: 'Manage Event', component: ManageEventComponent},
+  {path: 'location', title: 'Events by location', component: EventsByLocationComponent},
+  {path: 'city', title: 'Events by city', component: EventsByCityComponent}, 
   {path: '**', component: HomeComponent},
 ];
