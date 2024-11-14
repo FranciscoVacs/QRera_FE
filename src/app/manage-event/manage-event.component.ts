@@ -45,7 +45,7 @@ export class ManageEventComponent {
     min_age: new FormControl(''),
     location: new FormControl('', Validators.required),
     dj: new FormControl('', Validators.required),
-    ticketType: new FormControl(''),
+    ticketType: new FormControl('', Validators.required),
   })
 
   ngOnInit(){
@@ -61,8 +61,6 @@ export class ManageEventComponent {
         this.eventForm
           .patchValue({event_name: this.event.event_name, event_description: this.event.event_description, 
           min_age: this.event.min_age, location: this.event.location.location_name, ticketType: 'a'})
-        console.log(this.event.begin_datetime)
-        console.log(this.eventForm.value.begin_datetime)    
       })}
     this.apiservice.getLocations()
     .subscribe(response => {
@@ -119,16 +117,24 @@ export class ManageEventComponent {
       (response => {let res = response}) 
     }
     else {
-      console.log(formdata)
       this.apiservice.postEvent(formdata).subscribe
-      (response=> {this.loadedEvent = response; console.log(this.loadedEvent)}) 
-/*
-      this.ticketList.forEach((ticket: any) => {
-        this.apiservice.postTicketType(ticket).subscribe
-        (response => {console.log(this.loadedEvent); ticket.id = this.ticketList.this.loadedEvent.data.id; let res = response; console.log(response)})
-      });*/
+      (response=> 
+        {
+        this.loadedEvent = response; 
+        this.postTicketTypes()
+      }) 
     } 
-    alert(this.event.event_name) 
+  }
+
+  postTicketTypes(){
+      
+      this.ticketList.forEach((ticket: any) => {
+      ticket.begin_datetime = this.formatDateTime(ticket.begin_datetime, '00', '00')
+      ticket.finish_datetime = this.formatDateTime(ticket.finish_datetime, '00', '00')
+      ticket.event = this.loadedEvent.data.id;
+      this.apiservice.postTicketType(ticket, this.loadedEvent.data.id).subscribe
+      (response => { let res = response})
+      });
   }
 
   formatDateTime(date: any, selectedHour: string, selectedMinute: string){

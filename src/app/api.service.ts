@@ -44,8 +44,8 @@ export class ApiService {
     return this.httpClient.get(this.baseRoute  + `/city` + `/${id}`)
   }
 
-  postTicketType(ticketType: any) {
-    return this.httpClient.post(this.baseRoute  + `/ticketType`, ticketType);
+  postTicketType(ticketType: any, id: number) {
+    return this.httpClient.post(this.baseRoute  + `/event` + `/${id}` + `/ticketType` , ticketType);
   }
   
   getTicketTypes() {
