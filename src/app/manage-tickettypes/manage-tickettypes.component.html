@@ -3,8 +3,8 @@
   <mat-accordion>
     <mat-expansion-panel *ngFor="let tickettype of tickettypes; index as i"  (opened)="panelOpenState.set(true)" (closed)="panelOpenState.set(false)">
       <mat-expansion-panel-header>
-        <mat-panel-title>Nombre: {{tickettype.ticketType_name}} </mat-panel-title>
-        <mat-panel-description>Precio: {{tickettype.price}} </mat-panel-description>
+        <mat-panel-title> Tipo de ticket {{i+1}} </mat-panel-title>
+        <mat-panel-description> Nombre: {{tickettype.ticketType_name}} </mat-panel-description>
       </mat-expansion-panel-header>
         <p>Fecha inicio: {{tickettype.begin_datetime}}</p>
         <p>Fecha fin: {{tickettype.finish_datetime}}</p>

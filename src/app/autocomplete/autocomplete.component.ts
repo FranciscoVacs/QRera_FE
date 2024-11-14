@@ -73,8 +73,6 @@ export class AutocompleteComponent {
   }
 
   onSearchPrompted(){
-    console.log(';l;lklklkjlhiugopouaj;dwsj')
-    /* go to route with location/city's id. */
     if (this.targetRoute === '')
     setTimeout(()=> this.router.navigate([`${this.targetRoute}`]), 1000);
     else 

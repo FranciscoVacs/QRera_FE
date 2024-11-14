@@ -56,7 +56,6 @@ export class ManageTickettypesComponent {
   }
 
   sendTicketList(){
-    console.log('ashuda')
     this.ticketListEvent.emit(this.tickettypes)
   }
 }

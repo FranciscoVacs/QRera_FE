@@ -8,9 +8,6 @@ export class ApiService {
 
   constructor(private httpClient: HttpClient) { }
   baseRoute = 'http://localhost:3000/api';
-  eventRoute = 'http://localhost:3000/api/event';
-  locationRoute = 'http://localhost:3000/api/location';
-  ticketTypeRoute = 'http://localhost:3000/api/ticketType';
   actualEvent: any;
   
   getEvents() {

@@ -30,15 +30,7 @@ export class EventComponent {
   .subscribe(response => {
     this.variable = response; 
     this.event = this.variable.data
-    console.log(this.event)
   });
-
-  /*
-  this.route.data.subscribe( 
-    (data: {event: any}) => {
-      this.event=data.event
-    }
-  )*/
   }
 
   setTicketType(chosenType: any){

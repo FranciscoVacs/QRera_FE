@@ -9,6 +9,7 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
 import { ActivatedRoute } from '@angular/router';
 import { ManageTickettypesComponent } from '../manage-tickettypes/manage-tickettypes.component.js';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-manage-event',
@@ -19,7 +20,7 @@ import { ManageTickettypesComponent } from '../manage-tickettypes/manage-tickett
 
 })
 export class ManageEventComponent {
-  constructor(private route: ActivatedRoute, private apiservice: ApiService){}
+  constructor(private route: ActivatedRoute, private apiservice: ApiService, private http: HttpClient){}
   selectedStartHour: string = '00'
   selectedStartMinute: string = '00'
   selectedFinishHour: string = '00'
@@ -68,13 +69,11 @@ export class ManageEventComponent {
   }
 
   onFileSelected(event: any){
-    console.log(event)
-    this.selectedFile = event.target.files[0]
+    this.selectedFile = event.target.files[0] 
   }
 
   updateTicketList(ticketList: any){
     this.ticketList = ticketList
-    console.log(this.ticketList)
   }
 
   onSubmitEvent() {
@@ -93,13 +92,24 @@ export class ManageEventComponent {
      "location": this.eventForm.value.location,
      "ticketType": this.ticketList
     }
-    console.log(this.event)
+    let formdata = new FormData();
+    formdata.append('event_name', this.event.event_name)
+    formdata.append('begin_datetime',this.event.begin_datetime)
+    formdata.append('finish_datetime',this.event.finish_datetime)
+    formdata.append('event_description',this.event.event_description)
+    formdata.append('min_age',this.event.min_age)
+    formdata.append('cover_photo', this.selectedFile, this.selectedFile.name);
+    formdata.append('location',this.event.location)
+    formdata.append('dj','1')
+    formdata.append('ticketType',this.event.ticketType)
+
     if (this.updating){
-      this.apiservice.updateEvent(this.event, this.eventID).subscribe
+      this.apiservice.updateEvent(formdata, this.eventID).subscribe
       (response => this.res = response) 
     }
     else {
-      this.apiservice.postEvent(this.event).subscribe
+      console.log(this.event)
+      this.apiservice.postEvent(formdata).subscribe
       (response=> this.res = response) 
     }
     alert(this.event.event_name) 
