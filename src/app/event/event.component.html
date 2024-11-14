@@ -1,44 +1,88 @@
 <div id="eventContainer"><img class="eventimg" alt="No image available" [src]="event.cover_photo"></div>
-<p>Nombre: {{event.event_name}}</p>
-<p>Descripcion: {{event.event_description}}</p>
-<p> Inicio: {{event.begin_datetime}} Fin: {{event.finish_datetime}}</p>
-<p>Edad minima: {{event.min_age}}</p>
-<p>Ubicacion: {{event.location.location_name}}</p>
-<hr><hr><hr><hr><hr>
 
-<div [ngSwitch]="state">
+<h3>Nombre</h3>
+<mat-list>
+  <mat-list-item>{{event.event_name}}</mat-list-item>
+</mat-list>
 
-<div *ngSwitchCase="0">
-<p>compra de entradas</p>
-<label>
-  <select>
-    <option (click)="setTicketType(tType)"  *ngFor="let tType of event.ticketType; index as i">{{tType.ticketType_name}}</option>
-  </select>
-</label>
-</div>
+<h3>Descripción</h3>
+<mat-list>
+  <mat-list-item>{{event.event_description}}</mat-list-item>
+</mat-list>
 
-<div *ngSwitchCase="1">
-<p>Nombre de tipo de entrada: {{selectedTicketType.ticketType_name}}</p>
-<p>Precio de entrada: {{selectedTicketType.price}}</p>
-<p>Cantidad a comprar: 
-  <label>
-    <select> 
-      <option (click)="setTicketAmount(amounts[i])" *ngFor="let num of amounts; index as i">{{amounts[i]}}</option>
+<h3>Inicio</h3>
+<mat-list>
+  <mat-list-item>{{event.begin_datetime}}</mat-list-item>
+</mat-list>
 
-    </select>
-  </label>
-</p>
-</div>
+<h3>Fin</h3>
+<mat-list>
+  <mat-list-item>{{event.finish_datetime}}</mat-list-item>
+</mat-list>
 
+<h3>Edad mínima</h3>
+<mat-list>
+  <mat-list-item>{{event.min_age}}</mat-list-item>
+</mat-list>
 
-<div *ngSwitchCase="2">
-<p>Resumen de compra</p>
-<p>Ubicacion: {{event.location.location_name}}</p>
-<p>Fecha y hora: {{event.begin_datetime}}</p>
-<p>Tipo de entrada: {{selectedTicketType.ticketType_name}}</p>
-<p>Cantidad de entradas: {{ticketAmount}}</p>
-<p>Precio final: {{selectedTicketType.price * ticketAmount}} </p>
-<button (click)="checkUserData()">Confirmar compra</button>
-</div>
+<h3>Ubicación</h3>
+<mat-list>
+  <mat-list-item>{{event.location.location_name}}</mat-list-item>
+</mat-list>
+
+<div id="stepper">
+
+<mat-stepper [linear]="true" #stepper>
+  <mat-step [stepControl]="firstFormGroup">
+    <form [formGroup]="firstFormGroup">
+      <ng-template matStepLabel>Selecciona el tipo de entrada</ng-template>
+      <mat-form-field>
+        <mat-label>Tipo de entrada </mat-label>
+        <mat-select (selectionChange)="optSelected()" formControlName="firstCtrl" required>
+          @for (ticket of event.ticketType; track ticket) {
+          <mat-option [value]="ticket">{{ticket.ticketType_name}}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+      <div>
+        <button mat-button matStepperNext>Next</button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step [stepControl]="secondFormGroup" label="Cantidad de entradas">
+    <form [formGroup]="secondFormGroup">
+      <div *ngIf="selectedTicketType">
+      <p >Nombre de tipo de entrada: {{selectedTicketType.ticketType_name}}</p>
+      <p>Precio de entrada: {{selectedTicketType.price}}</p>
+      </div>
+      <mat-form-field>
+        <mat-label>Cantidad de entradas </mat-label>
+        <mat-select (selectionChange)="amountSelected()" formControlName="secondCtrl" required>
+          @for (number of amounts; track number) {
+          <mat-option [value]="number">{{number}}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button matStepperNext>Next</button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step>
+    <ng-template matStepLabel>Resumen de compra</ng-template>
+    <div *ngIf="selectedTicketType && ticketAmount">
+      <p>Ubicacion: {{event.location.location_name}}</p>
+      <p>Fecha y hora: {{event.begin_datetime}}</p>
+      <p>Tipo de entrada: {{selectedTicketType.ticketType_name}}</p>
+      <p>Cantidad de entradas: {{ticketAmount}}</p>
+      <p>Precio final: {{selectedTicketType.price * ticketAmount}} </p>
+    </div>
+    <div>
+      <button mat-button matStepperPrevious>Back</button>
+      <button mat-button (click)="stepper.reset()">Reset</button>
+    </div>
+  </mat-step>
+</mat-stepper>
 
 </div>

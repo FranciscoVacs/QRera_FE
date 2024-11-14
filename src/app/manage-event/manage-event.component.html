@@ -93,14 +93,16 @@
 
   <h3>Subir foto del evento</h3>
   <input type="file" (change)="onFileSelected($event)">
-
+  
+  <div id="tTypeManager">
   <h3>Tipos de ticket</h3>
-  <app-manage-tickettypes (ticketListEvent)="updateTicketList($event)"></app-manage-tickettypes>
+  <app-manage-tickettypes  (ticketListEvent)="updateTicketList($event)"></app-manage-tickettypes>
   <br>
   <div>
   <button id="submitEventButton" mat-raised-button type="submit" [disabled]="!eventForm.valid">
   Cargar
   </button>
+  </div>
   </div>
   <br>
 

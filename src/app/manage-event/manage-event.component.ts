@@ -49,6 +49,7 @@ export class ManageEventComponent {
   })
 
   ngOnInit(){
+    window.scrollTo(0, 0);
     this.route.params.subscribe( params => {
       this.updating = params['updating'];
       this.eventID = params['eventID']
@@ -114,7 +115,7 @@ export class ManageEventComponent {
 
     if (this.updating){
       this.apiservice.updateEvent(formdata, this.eventID).subscribe
-      (response => {let res = response}) 
+      (response => {let res = response; alert('Evento actualizado con éxito')}) 
     }
     else {
       this.apiservice.postEvent(formdata).subscribe
@@ -128,12 +129,17 @@ export class ManageEventComponent {
 
   postTicketTypes(){
       
-      this.ticketList.forEach((ticket: any) => {
+      this.ticketList.forEach((ticket: any, index: number) => {
       ticket.begin_datetime = this.formatDateTime(ticket.begin_datetime, '00', '00')
       ticket.finish_datetime = this.formatDateTime(ticket.finish_datetime, '00', '00')
       ticket.event = this.loadedEvent.data.id;
       this.apiservice.postTicketType(ticket, this.loadedEvent.data.id).subscribe
-      (response => { let res = response})
+          
+      (response => 
+        { 
+          let res = response; 
+          if (index+1===this.ticketList.length){alert('Evento cargado con éxito')}
+        })
       });
   }
 
