@@ -22,11 +22,11 @@ export class ErrorHandlerService extends ErrorHandler {
       } else if (error.status === 0) {
         errorMessage = 'Status code: 0';
       }
-      this.snackBar.open(errorMessage, 'Dismiss', { duration: 3000 });
-      console.error(errorMessage)
       }
       else {
-      console.error('Non-HTTP error: ', error);
+      errorMessage = 'Non-HTTP error: ' 
       }
+      this.snackBar.open(errorMessage + error, 'Dismiss', { duration: 3000 });
+      console.error(errorMessage, error)
   }
 }

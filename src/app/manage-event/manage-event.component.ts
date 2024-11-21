@@ -46,6 +46,7 @@ export class ManageEventComponent {
   locationList: any;
   djList: any;
   selectedFile: any;
+  file: any;
   variable: any;
   eventForm = new FormGroup ({
     event_name: new FormControl('', Validators.required),  
@@ -60,6 +61,8 @@ export class ManageEventComponent {
 
   ngOnInit(){
     window.scrollTo(0, 0);
+    this.setDefaultFile()
+
     this.route.params.subscribe( params => {
       this.updating = params['updating'];
       this.eventID = params['eventID']
@@ -70,7 +73,7 @@ export class ManageEventComponent {
         this.event = event
         this.eventForm
           .patchValue({event_name: this.event.event_name, event_description: this.event.event_description, 
-          min_age: this.event.min_age, location: this.event.location.location_name, ticketType: 'a'})
+          min_age: this.event.min_age, location: this.event.location.location_name, ticketType: 'Value'})
       })}
     this.locationService.getLocations()
     .subscribe(locations => {
@@ -82,18 +85,33 @@ export class ManageEventComponent {
     })
   }
 
+  async setDefaultFile(){
+    try {
+      const response = await fetch('../../assets/no-image-icon.png');
+      if (!response.ok) {
+        throw new Error(`Failed to fetch file: ${response.statusText}`);
+      }
+      const blob = await response.blob();
+      this.selectedFile = new File([blob], 'no-image-icon.png', { type: blob.type });
+    } catch (error) {
+        throw error;
+    }
+}
+
   onFileSelected(event: any){
+    if (event.target.files[0]) 
     this.selectedFile = event.target.files[0] 
   }
 
   updateTicketList(ticketList: any){
     this.ticketList = ticketList
-    if (this.ticketList && this.atLeastOneticket){
+    if (this.ticketList){
       this.eventForm.patchValue({ticketType: 'Value'})
     }
   }
 
   onSubmitEvent() {
+    console.log(this.selectedFile)
     let minage: number = 1
 
     if (this.eventForm.value.min_age) {
