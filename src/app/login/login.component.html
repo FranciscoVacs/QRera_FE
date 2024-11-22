@@ -1,12 +1,18 @@
-<div *ngIf="login">
-<h1 mat-dialog-title>Ingresar a tu cuenta</h1>
-<p class="toggleText">¿No tenés una cuenta? <a class="toggle" (click)="login = !login">Crear cuenta</a></p>
+
+<div *ngIf="loginBool">
+<div class="container">
+  <h1 mat-dialog-title>Ingresar a tu cuenta</h1>
+  <button (click)="closeDialog()" mat-icon-button>
+    <mat-icon class="material-symbols-outlined">close</mat-icon>
+  </button>
+</div>
+<p class="toggleText">¿No tenés una cuenta? <a class="toggle" (click)="loginBool = !loginBool">Crear cuenta</a></p>
 <br>
 <mat-dialog-content>
-  <h2>Usuario </h2>
+  <h2>E-mail </h2>
   <mat-form-field>
     <mat-label></mat-label>
-    <input matInput [(ngModel)]="username"/>
+    <input matInput [(ngModel)]="email"/>
   </mat-form-field>
   <br>
   <h2>Contraseña </h2>
@@ -15,16 +21,21 @@
     <input matInput [(ngModel)]="password" />
   </mat-form-field>
   <br>
-  <button mat-raised-button id="createAccount"> Iniciar sesión </button>
+  <button class="actionButton" (click)="login()" mat-raised-button> Iniciar sesión </button>
 </mat-dialog-content>
 </div>
 
-<div *ngIf="!login">
-  <h1 mat-dialog-title>Crear cuenta</h1>
-  <p class="toggleText">¿Ya tenés una cuenta? <a class="toggle" (click)="login = !login">Ingresar a tu cuenta</a></p>
+<div *ngIf="!loginBool">
+  <div class="container">
+    <h1 mat-dialog-title>Crear cuenta</h1>
+    <button (click)="closeDialog()" mat-icon-button>
+      <mat-icon class="material-symbols-outlined">close</mat-icon>
+    </button>
+  </div>
+  <p class="toggleText">¿Ya tenés una cuenta? <a class="toggle" (click)="loginBool = !loginBool">Ingresar a tu cuenta</a></p>
   <br>
   <mat-dialog-content>
-  <form [formGroup]="registerForm" (ngSubmit)="onSubmitData()">
+  <form [formGroup]="registerForm" (ngSubmit)="register()">
     <h2>Nombre </h2>
     <mat-form-field>
       <mat-label></mat-label>
@@ -53,7 +64,7 @@
       <input matInput formControlName="password" />
     </mat-form-field>
     <br>
-    <button mat-raised-button id="createAccount"> Crear </button>
+    <button mat-raised-button class="actionButton" type="submit"> Crear </button>
     </form>
     </mat-dialog-content>
   

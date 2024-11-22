@@ -12,11 +12,33 @@
   padding-left: 1.5rem;
 }
 
-#createAccount {
-    background-color: rgb(233, 41, 150);
-      color: white;
-      border-radius: 0;
-      padding: 1rem 2rem;
-      font-size: 1.2rem;
-      border: 2px solid white;
+.actionButton {
+  background-color: rgb(233, 41, 150);
+  color: white;
+  border-radius: 0;
+  padding: 1rem 2rem;
+  font-size: 1.2rem;
+  border: 2px solid white;
+}
+
+mat-dialog-content {
+  height: 100%;
+}
+
+mat-form-field {
+  width: 100%;
+}
+
+mat-dialog-container {
+  height: 100%;
+}
+
+#closeButton {
+  text-align: right;
+}
+
+.container {
+  display: flex;
+    align-items: center;
+    justify-content: space-between;
 }

@@ -28,7 +28,7 @@ export class AppComponent {
   title = 'QRera-FE';
 
     openLogin() {
-          const dialogRef = this.dialog.open(LoginComponent, {height: '70%', width: '50%',});
+          const dialogRef = this.dialog.open(LoginComponent, {height: '100%', width: '50%',});
 
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);
