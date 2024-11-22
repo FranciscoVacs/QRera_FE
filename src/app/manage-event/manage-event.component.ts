@@ -60,7 +60,6 @@ export class ManageEventComponent {
   })
 
   ngOnInit(){
-    window.scrollTo(0, 0);
     this.setDefaultFile()
 
     this.route.params.subscribe( params => {

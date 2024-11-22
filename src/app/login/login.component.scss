@@ -1,0 +1,22 @@
+.toggle {
+  color: rgb(233, 41, 150);
+  text-decoration: none;
+}
+
+.toggle:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.toggleText {
+  padding-left: 1.5rem;
+}
+
+#createAccount {
+    background-color: rgb(233, 41, 150);
+      color: white;
+      border-radius: 0;
+      padding: 1rem 2rem;
+      font-size: 1.2rem;
+      border: 2px solid white;
+}

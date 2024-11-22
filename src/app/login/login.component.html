@@ -1,0 +1,60 @@
+<div *ngIf="login">
+<h1 mat-dialog-title>Ingresar a tu cuenta</h1>
+<p class="toggleText">¿No tenés una cuenta? <a class="toggle" (click)="login = !login">Crear cuenta</a></p>
+<br>
+<mat-dialog-content>
+  <h2>Usuario </h2>
+  <mat-form-field>
+    <mat-label></mat-label>
+    <input matInput [(ngModel)]="username"/>
+  </mat-form-field>
+  <br>
+  <h2>Contraseña </h2>
+  <mat-form-field>
+    <mat-label></mat-label>
+    <input matInput [(ngModel)]="password" />
+  </mat-form-field>
+  <br>
+  <button mat-raised-button id="createAccount"> Iniciar sesión </button>
+</mat-dialog-content>
+</div>
+
+<div *ngIf="!login">
+  <h1 mat-dialog-title>Crear cuenta</h1>
+  <p class="toggleText">¿Ya tenés una cuenta? <a class="toggle" (click)="login = !login">Ingresar a tu cuenta</a></p>
+  <br>
+  <mat-dialog-content>
+  <form [formGroup]="registerForm" (ngSubmit)="onSubmitData()">
+    <h2>Nombre </h2>
+    <mat-form-field>
+      <mat-label></mat-label>
+      <input matInput formControlName="user_name" />
+    </mat-form-field>
+    <br>
+    <h2>Apellido </h2>
+    <mat-form-field>
+      <mat-label></mat-label>
+      <input matInput formControlName="user_surname" />
+    </mat-form-field>
+    <h2>Fecha de nacimiento </h2>
+    <mat-form-field>
+      <mat-label></mat-label>
+      <input matInput formControlName="birth_date" />
+    </mat-form-field>
+    <br>
+    <h2>E-mail </h2>
+    <mat-form-field>
+      <mat-label></mat-label>
+      <input matInput formControlName="email" />
+    </mat-form-field>
+    <h2>Contraseña </h2>
+    <mat-form-field>
+      <mat-label></mat-label>
+      <input matInput formControlName="password" />
+    </mat-form-field>
+    <br>
+    <button mat-raised-button id="createAccount"> Crear </button>
+    </form>
+    </mat-dialog-content>
+  
+</div>
