@@ -12,6 +12,7 @@ import { TicketTypeService } from '../services/ticket-type.service.js';
 import { EventService } from '../services/event.service.js';
 import { LocationService } from '../services/location.service.js';
 import { DjService } from '../services/dj.service.js';
+import { DateService } from '../date.service.js';
 
 @Component({
   selector: 'app-manage-event',
@@ -28,7 +29,8 @@ export class ManageEventComponent {
     private ticketTypeService: TicketTypeService, 
     private locationService: LocationService, 
     private djService: DjService, 
-    private eventService: EventService
+    private eventService: EventService,
+    private dateService: DateService,
   ){}
 
   selectedStartHour: string = '00'
@@ -46,8 +48,6 @@ export class ManageEventComponent {
   locationList: any;
   djList: any;
   selectedFile: any;
-  file: any;
-  variable: any;
   eventForm = new FormGroup ({
     event_name: new FormControl('', Validators.required),  
     begin_datetime: new FormControl('', Validators.required),
@@ -110,7 +110,6 @@ export class ManageEventComponent {
   }
 
   onSubmitEvent() {
-    console.log(this.selectedFile)
     let minage: number = 1
 
     if (this.eventForm.value.min_age) {
@@ -120,8 +119,8 @@ export class ManageEventComponent {
     this.event = 
     {
      "event_name": this.eventForm.value.event_name,
-     "begin_datetime": this.formatDateTime(this.eventForm.value.begin_datetime, this.selectedStartHour, this.selectedStartMinute),
-     "finish_datetime":this.formatDateTime(this.eventForm.value.finish_datetime, this.selectedFinishHour, this.selectedFinishMinute),
+     "begin_datetime": this.dateService.formatDateTime(this.eventForm.value.begin_datetime, this.selectedStartHour, this.selectedStartMinute),
+     "finish_datetime":this.dateService.formatDateTime(this.eventForm.value.finish_datetime, this.selectedFinishHour, this.selectedFinishMinute),
      "event_description": this.eventForm.value.event_description,
      "min_age": minage,
      "location": this.eventForm.value.location,
@@ -154,23 +153,14 @@ export class ManageEventComponent {
   postTicketTypes(){
       
       this.ticketList.forEach((ticket: any, index: number) => {
-      ticket.begin_datetime = this.formatDateTime(ticket.begin_datetime, '00', '00')
-      ticket.finish_datetime = this.formatDateTime(ticket.finish_datetime, '00', '00')
+      ticket.begin_datetime = this.dateService.formatDateTime(ticket.begin_datetime, '00', '00')
+      ticket.finish_datetime = this.dateService.formatDateTime(ticket.finish_datetime, '00', '00')
       ticket.event = this.postedEvent.id;
       this.ticketTypeService.postTicketType(ticket, this.postedEvent.id).subscribe
-          
       (ticketType => 
         { 
           if (index+1===this.ticketList.length){alert('Evento cargado con éxito')}
         })
       });
   }
-
-  formatDateTime(date: any, selectedHour: string, selectedMinute: string){
-   let month: string = (date.getMonth()+1) < 10 ? '0' + (date.getMonth()+1).toString() : (date.getMonth()+1).toString()
-   let day: string = date.getDate() < 10 ? '0' + date.getDate().toString() : date.getDate().toString()
-   let dateString: string = `${date.getFullYear().toString()}-${month}-${day} ${selectedHour}:${selectedMinute}:00`
-   return dateString
-  }
-
 }

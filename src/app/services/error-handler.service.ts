@@ -11,22 +11,14 @@ export class ErrorHandlerService extends ErrorHandler {
   }
   override handleError(error: any): void {
 
-       let errorMessage = 'An unknown error occurred';
+       let errorMessage = '';
       if (error instanceof HttpErrorResponse){
-       if (error.status === 401) {
-         errorMessage = '401: Unauthorized request. Please log in again.';
-       } else if (error.status === 404) {
-        errorMessage = '404: Resource not found.';
-      } else if (error.status === 500) {
-        errorMessage = '500: Internal server error. Please try again later.';
-      } else if (error.status === 0) {
-        errorMessage = 'Status code: 0';
-      }
+        errorMessage = `Error ${error.status}: ${error.statusText}`
       }
       else {
-      errorMessage = 'Non-HTTP error: ' 
+      errorMessage = `Non-HTTP error: ${error.statusText}` 
       }
-      this.snackBar.open(errorMessage + error, 'Dismiss', { duration: 3000 });
+      this.snackBar.open(errorMessage, 'Dismiss', { duration: 3000 });
       console.error(errorMessage, error)
   }
 }

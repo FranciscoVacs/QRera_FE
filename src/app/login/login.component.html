@@ -22,6 +22,7 @@
   </mat-form-field>
   <br>
   <button class="actionButton" (click)="login()" mat-raised-button> Iniciar sesión </button>
+  <h2>{{feedback}}</h2>
 </mat-dialog-content>
 </div>
 
@@ -49,8 +50,11 @@
     </mat-form-field>
     <h2>Fecha de nacimiento </h2>
     <mat-form-field>
-      <mat-label></mat-label>
-      <input matInput formControlName="birth_date" />
+      <mat-label>Fecha de nacimiento</mat-label>
+      <input matInput [matDatepicker]="picker1" formControlName="birth_date">
+      <mat-hint>MM/DD/YYYY</mat-hint>
+      <mat-datepicker-toggle matIconSuffix [for]="picker1"></mat-datepicker-toggle>
+      <mat-datepicker #picker1></mat-datepicker>
     </mat-form-field>
     <br>
     <h2>E-mail </h2>
