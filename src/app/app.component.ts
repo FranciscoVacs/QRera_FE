@@ -11,6 +11,9 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { NgIf } from '@angular/common';
 import { JWTService } from './services/jwt.service.js';
 import { AuthService } from './services/auth.service.js';
+import { jwtDecode } from 'jwt-decode';
+import { UserService } from './services/user.service.js';
+import { UserComponent } from './user/user.component.js';
 
 @Component({
   selector: 'app-root',
@@ -20,7 +23,7 @@ import { AuthService } from './services/auth.service.js';
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
-  constructor(private jwtService: JWTService, public authService: AuthService) {}
+  constructor(private userService: UserService,private jwtService: JWTService, public authService: AuthService) {}
 
   readonly dialog = inject(MatDialog)
 
@@ -33,16 +36,35 @@ export class AppComponent {
   title = 'QRera-FE';
 
   ngOnInit(){
+    let token = this.jwtService.getToken()
+    if(token){
+      let decodedToken: any = jwtDecode(token)
+      let isTokenExpired: boolean = decodedToken.exp * 1000 < Date.now()
+      if (!isTokenExpired){
+        this.userService.getUserById(decodedToken.id).subscribe(
+          res => {this.authService.currentUserSig.set(res); console.log(res)})
+      }
+      else {
+        this.jwtService.destroyToken()
+        this.authService.currentUserSig.set(null)
+      }
+    }
   }
 
-
     openLogin() {
-          const dialogRef = this.dialog.open(LoginComponent, {height: '100%', width: '50%',});
+      const dialogRef = this.dialog.open(LoginComponent, {height: '100%', width: '50%',});
 
-    dialogRef.afterClosed().subscribe(result => {
+      dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);
     });
     }
 
+    openUser(){
+      const dialogRef = this.dialog.open(UserComponent, {height: '80%', width: '50%',});
+
+      dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+      });
+    }
 
 }

@@ -10,7 +10,7 @@
   </nav>
   <div  class="accountbutton">
     <button *ngIf="authService.currentUserSig() === null" id="account" mat-raised-button (click)="openLogin()"> Login</button>
-    <button *ngIf="authService.currentUserSig()" id="account" mat-raised-button> {{authService.currentUserSig()?.user_name}} {{authService.currentUserSig()?.user_surname}}</button>
+    <button *ngIf="authService.currentUserSig()" id="account" mat-raised-button (click)="openUser()"> {{authService.currentUserSig()?.user_name}} {{authService.currentUserSig()?.user_surname}}</button>
   </div>
 </div>
   </nav>

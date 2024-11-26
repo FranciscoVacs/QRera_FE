@@ -1,0 +1,23 @@
+
+  <div class="container">
+    <h1 mat-dialog-title>Tu cuenta</h1>
+    <button (click)="closeDialog()" mat-icon-button>
+      <mat-icon class="material-symbols-outlined">close</mat-icon>
+    </button>
+  </div>
+  <br>
+  <mat-dialog-content>
+    <h2>E-mail </h2>
+    <h2>{{authService.currentUserSig()?.email}}</h2>
+    <br>
+    <h2>Nombre</h2>
+    <h2>{{authService.currentUserSig()?.user_name}}</h2>
+    <br>
+    <h2>Apellido</h2>
+    <h2>{{authService.currentUserSig()?.user_surname}}</h2>
+    <br>
+    <h2>Fecha de nacimiento</h2>
+    <h2>{{authService.currentUserSig()?.birth_date}}</h2>
+    <br>
+    <button class="actionButton" (click)="logout()" mat-raised-button> Cerrar sesión </button>
+  </mat-dialog-content>
