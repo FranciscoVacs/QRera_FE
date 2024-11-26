@@ -12,7 +12,7 @@ import { TicketTypeService } from '../services/ticket-type.service.js';
 import { EventService } from '../services/event.service.js';
 import { LocationService } from '../services/location.service.js';
 import { DjService } from '../services/dj.service.js';
-import { DateService } from '../date.service.js';
+import { DateService } from '../services/date.service.js';
 
 @Component({
   selector: 'app-manage-event',

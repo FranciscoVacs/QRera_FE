@@ -8,15 +8,12 @@
     <a class="link" [routerLink]="obj.route" mat-tab-link (click)="activeLink = obj.link" [active]="activeLink == obj.link"> {{obj.link}} </a>
     }
   </nav>
-  <div class="accountbutton">
-    <button id="account" mat-raised-button (click)="openLogin()"> Login</button>
+  <div  class="accountbutton">
+    <button *ngIf="authService.currentUserSig() === null" id="account" mat-raised-button (click)="openLogin()"> Login</button>
+    <button *ngIf="authService.currentUserSig()" id="account" mat-raised-button> {{authService.currentUserSig()?.user_name}} {{authService.currentUserSig()?.user_surname}}</button>
   </div>
 </div>
   </nav>
   <mat-tab-nav-panel #tabPanel>
     <router-outlet></router-outlet>
   </mat-tab-nav-panel>
-
-
-
-

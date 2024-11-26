@@ -8,15 +8,20 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatDialog, MatDialogModule} from '@angular/material/dialog';
 import {LoginComponent} from './login/login.component.js';
 import { ReactiveFormsModule } from '@angular/forms';
+import { NgIf } from '@angular/common';
+import { JWTService } from './services/jwt.service.js';
+import { AuthService } from './services/auth.service.js';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [ReactiveFormsModule, RouterOutlet, CommonModule, EventPreviewComponent, JsonPipe, HomeComponent, RouterLink, MatTabsModule, MatButtonModule, MatDialogModule],
+  imports: [NgIf, ReactiveFormsModule, RouterOutlet, CommonModule, EventPreviewComponent, JsonPipe, HomeComponent, RouterLink, MatTabsModule, MatButtonModule, MatDialogModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
+  constructor(private jwtService: JWTService, public authService: AuthService) {}
+
   readonly dialog = inject(MatDialog)
 
   arr = [
@@ -26,6 +31,10 @@ export class AppComponent {
   ]
   activeLink = this.arr[0].link;
   title = 'QRera-FE';
+
+  ngOnInit(){
+  }
+
 
     openLogin() {
           const dialogRef = this.dialog.open(LoginComponent, {height: '100%', width: '50%',});

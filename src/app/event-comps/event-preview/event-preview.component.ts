@@ -3,16 +3,18 @@ import {Router } from '@angular/router';
 import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
 import { EventService } from '../../services/event.service.js';
+import { NgIf } from '@angular/common';
+import { JWTService } from '../../services/jwt.service.js';
 
 @Component({
   selector: 'app-event-preview',
   standalone: true,
-  imports: [MatIconModule, MatButtonModule],
+  imports: [NgIf, MatIconModule, MatButtonModule],
   templateUrl: './event-preview.component.html',
   styleUrl: './event-preview.component.scss'
 })
 export class EventPreviewComponent {
-  constructor(private router: Router, private eventService: EventService){}
+  constructor(private router: Router, private eventService: EventService, private jwtService: JWTService ){}
  @Input() eventInput: any;
   routename: any;
 

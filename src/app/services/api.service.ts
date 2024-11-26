@@ -17,6 +17,10 @@ export class ApiService {
     return this.httpClient.post(this.baseRoute + path, body)
   }
 
+  postWithHeaders(path: string, body: any){
+    return this.httpClient.post(this.baseRoute + path, body, {observe: 'response'})
+  }
+
   patch(path: string, body: any){
     return this.httpClient.patch(this.baseRoute + path, body)
   }

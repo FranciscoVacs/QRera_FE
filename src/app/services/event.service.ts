@@ -12,7 +12,6 @@ export class EventService {
   getEvents() {
     return this.apiService.get(`/event`)
     .pipe(map((response: any) => response.data))
-    ;
   }
 
   getEventById(id: number) {

@@ -7,9 +7,11 @@ import { ReactiveFormsModule, FormControl, FormGroup, FormsModule, Validators } 
 import { MatIcon } from '@angular/material/icon';
 import { NgIf } from '@angular/common';
 import { UserService } from '../services/user.service.js';
-import { DateService } from '../date.service.js';
+import { DateService } from '../services/date.service.js';
 import { catchError, of } from 'rxjs';
 import { MatDatepickerModule, MatDatepickerToggle } from '@angular/material/datepicker';
+import {jwtDecode} from 'jwt-decode';
+import { AuthService } from '../services/auth.service.js';
 
 @Component({
   selector: 'app-login',
@@ -32,7 +34,11 @@ import { MatDatepickerModule, MatDatepickerToggle } from '@angular/material/date
 })
 export class LoginComponent {
 
-  constructor(private userService: UserService, private dateService: DateService, private dialogRef: MatDialogRef<LoginComponent>){}
+  constructor( 
+    private authService: AuthService,
+    private userService: UserService, 
+    private dateService: DateService, 
+    private dialogRef: MatDialogRef<LoginComponent>){}
 
   email: string = ''
   password: string = ''
@@ -57,17 +63,57 @@ export class LoginComponent {
       "password" : this.registerForm.value.password,
       "birth_date" : formattedDate
     }
-    this.userService.registerUser(newUser).subscribe(res => res)
+    this.userService.registerUser(newUser).pipe(
+      catchError(err => 
+        {return of({error: err})}
+        ))
+      .subscribe((res:any) => {
+        console.log('loldab: ', res)
+        if (res.error){
+          this.feedback = res.error.error.message}
+        else {
+          let token: string = res.headers.get('token')
+          let decodedToken = jwtDecode(token)
+          let user
+          console.log(decodedToken)
+          /*
+          this.userService.getUserById(decodedToken.id).subscribe((res:any)=>{
+          user = res.user
+          })*/
+          localStorage.setItem('token', token)
+
+
+          this.authService.currentUserSig.set(user)
+          this.feedback = res.body.message
+          this.closeDialog()
+        }
+    })
   }
 
   login(){
     this.userService.logUser({"email": this.email, "password": this.password}).pipe(
       catchError(err => 
-        {return of({error: err.error})}
-      ))
+        {return of({error: err})}
+        ))
       .subscribe((res: any) => {
-        console.log(res.error)
-        this.feedback = res.error[0].message
+        console.log('loldab: ', res)
+        if (res.error){
+          this.feedback = res.error.error.message}
+        else {
+          let token: string = res.headers.get('token')
+          let decodedToken: any = jwtDecode(token)
+          let user
+          console.log(decodedToken)
+          this.userService.getUserById(decodedToken.id).subscribe(res=>{
+            user = res
+            this.authService.currentUserSig.set(user)
+            console.log(this.authService.currentUserSig())
+          })
+          localStorage.setItem('token', token)
+
+          this.feedback = res.body.message
+          this.closeDialog()
+        }
       })
   }
   
