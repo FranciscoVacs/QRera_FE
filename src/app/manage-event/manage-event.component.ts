@@ -48,6 +48,7 @@ export class ManageEventComponent {
   locationList: any;
   djList: any;
   selectedFile: any;
+  
   eventForm = new FormGroup ({
     event_name: new FormControl('', Validators.required),  
     begin_datetime: new FormControl('', Validators.required),

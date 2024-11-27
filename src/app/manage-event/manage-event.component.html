@@ -96,7 +96,7 @@
   
   <div id="tTypeManager">
   <h3>Tipos de ticket</h3>
-  <app-manage-tickettypes (ticketListEvent)="updateTicketList($event)"></app-manage-tickettypes>
+  <app-manage-tickettypes [tickettypes]="event? event.ticketType : []" (ticketListEvent)="updateTicketList($event)"></app-manage-tickettypes>
   <br>
   <div>
   <button id="submitEventButton" mat-raised-button type="submit" [disabled]="!eventForm.valid">

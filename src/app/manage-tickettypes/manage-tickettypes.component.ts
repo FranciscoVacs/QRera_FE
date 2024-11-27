@@ -20,7 +20,7 @@ import { NgIf, NgSwitch, NgSwitchCase, NgFor, CommonModule } from '@angular/comm
 export class ManageTickettypesComponent {
   
   readonly panelOpenState = signal(false);
-  tickettypes: any[] = [];
+  @Input() tickettypes: any[] = [];
   isFormActivated: boolean = false;
   @Input() isEditable: boolean = true;
   @Output() ticketListEvent = new EventEmitter<any>();
@@ -29,8 +29,8 @@ export class ManageTickettypesComponent {
     ticketType_name: new FormControl('', Validators.required),  
     begin_datetime: new FormControl('', Validators.required),
     finish_datetime: new FormControl('', Validators.required),
-    price: new FormControl('', Validators.required),
-    max_quantity: new FormControl('', Validators.required),
+    price: new FormControl('', [Validators.required, Validators.min(0)]),
+    max_quantity: new FormControl('', [Validators.required, Validators.min(0)]),
   })
 
 
@@ -53,7 +53,6 @@ export class ManageTickettypesComponent {
     }
     this.tickettypes.push(tickettype)
     this.sendTicketList()
-    /* load all inputs into a tickettype object */
   }
 
   sendTicketList(){
