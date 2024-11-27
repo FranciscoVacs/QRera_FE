@@ -11,7 +11,7 @@ import { DateService } from '../services/date.service.js';
 import { catchError, of } from 'rxjs';
 import { MatDatepickerModule, MatDatepickerToggle } from '@angular/material/datepicker';
 import {jwtDecode} from 'jwt-decode';
-import { AuthService } from '../services/auth.service.js';
+import { JWTService } from '../services/jwt.service.js';
 
 @Component({
   selector: 'app-login',
@@ -35,7 +35,7 @@ import { AuthService } from '../services/auth.service.js';
 export class LoginComponent {
 
   constructor( 
-    private authService: AuthService,
+    private jwtService: JWTService,
     private userService: UserService, 
     private dateService: DateService, 
     private dialogRef: MatDialogRef<LoginComponent>){}
@@ -68,22 +68,13 @@ export class LoginComponent {
         {return of({error: err})}
         ))
       .subscribe((res:any) => {
-        console.log('loldab: ', res)
         if (res.error){
           this.feedback = res.error.error.message}
         else {
           let token: string = res.headers.get('token')
-          let decodedToken = jwtDecode(token)
-          let user
-          console.log(decodedToken)
-          /*
-          this.userService.getUserById(decodedToken.id).subscribe((res:any)=>{
-          user = res.user
-          })*/
-          localStorage.setItem('token', token)
-
-
-          this.authService.currentUserSig.set(user)
+          let decodedToken: any = jwtDecode(token)
+          this.jwtService.setCurrentUser(decodedToken)
+          this.jwtService.setToken(token)
           this.feedback = res.body.message
           this.closeDialog()
         }
@@ -96,21 +87,13 @@ export class LoginComponent {
         {return of({error: err})}
         ))
       .subscribe((res: any) => {
-        console.log('loldab: ', res)
         if (res.error){
           this.feedback = res.error.error.message}
         else {
           let token: string = res.headers.get('token')
           let decodedToken: any = jwtDecode(token)
-          let user
-          console.log(decodedToken)
-          this.userService.getUserById(decodedToken.id).subscribe(res=>{
-            user = res
-            this.authService.currentUserSig.set(user)
-            console.log(this.authService.currentUserSig())
-          })
-          localStorage.setItem('token', token)
-
+          this.jwtService.setCurrentUser(decodedToken)
+          this.jwtService.setToken(token)
           this.feedback = res.body.message
           this.closeDialog()
         }

@@ -14,6 +14,11 @@ export class UserService {
       map((response: any) => response.data))
   }
 
+  getUserPurchases(id: number){
+    return this.apiService.get('/user/tickets' + `/${id}`).pipe(
+      map((response: any) => response.data.purchase))
+  }
+
   registerUser(user: any){
     return this.apiService.postWithHeaders('/user/register', user)
   }
@@ -21,5 +26,4 @@ export class UserService {
   logUser(logdata: any){
     return this.apiService.postWithHeaders('/user/login', logdata)
   }
-
 }

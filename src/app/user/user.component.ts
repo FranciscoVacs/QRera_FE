@@ -1,14 +1,14 @@
 import { Component } from '@angular/core';
 import { MatIcon } from '@angular/material/icon';
 import { MatDialogTitle, MatDialogActions, MatDialogContent, MatDialogClose, MatDialogRef } from '@angular/material/dialog';
-import { AuthService } from '../services/auth.service.js';
 import { JWTService } from '../services/jwt.service.js';
-import { MatButton } from '@angular/material/button';
+import { MatButton, MatButtonModule } from '@angular/material/button';
 @Component({
   selector: 'app-user',
   standalone: true,
   imports: [MatIcon,     
     MatButton,
+    MatButtonModule,
     MatDialogTitle,
     MatDialogContent,
     MatDialogActions,
@@ -17,13 +17,13 @@ import { MatButton } from '@angular/material/button';
   styleUrl: './user.component.scss'
 })
 export class UserComponent {
-  constructor(private jwtService: JWTService,private dialogRef: MatDialogRef<UserComponent>, public authService: AuthService){}
+  constructor(public jwtService: JWTService, private dialogRef: MatDialogRef<UserComponent>){}
 
   logout(){
-    this.jwtService.destroyToken()
-    this.authService.currentUserSig.set(null)
+    this.jwtService.unloadUser()
     this.closeDialog()
   }
+
   closeDialog() {
     this.dialogRef.close('');
   }

@@ -14,7 +14,7 @@ import { JWTService } from '../../services/jwt.service.js';
   styleUrl: './event-preview.component.scss'
 })
 export class EventPreviewComponent {
-  constructor(private router: Router, private eventService: EventService, private jwtService: JWTService ){}
+  constructor(private router: Router, private eventService: EventService, public jwtService: JWTService ){}
  @Input() eventInput: any;
   routename: any;
 

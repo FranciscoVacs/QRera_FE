@@ -45,7 +45,7 @@
         </mat-select>
       </mat-form-field>
       <div>
-        <button mat-button matStepperNext>Next</button>
+        <button mat-button matStepperNext>Siguiente</button>
       </div>
     </form>
   </mat-step>
@@ -64,8 +64,8 @@
         </mat-select>
       </mat-form-field>
       <div>
-        <button mat-button matStepperPrevious>Back</button>
-        <button mat-button matStepperNext>Next</button>
+        <button mat-button matStepperPrevious>Volver</button>
+        <button mat-button matStepperNext>Siguiente</button>
       </div>
     </form>
   </mat-step>
@@ -79,8 +79,8 @@
       <p>Precio final: {{selectedTicketType.price * ticketAmount}} </p>
     </div>
     <div>
-      <button mat-button matStepperPrevious>Back</button>
-      <button mat-button (click)="stepper.reset()">Reset</button>
+      <button mat-button matStepperPrevious>Volver</button>
+      <button mat-button (click)="checkUserData()">Comprar</button>
     </div>
   </mat-step>
 </mat-stepper>

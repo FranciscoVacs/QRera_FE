@@ -10,7 +10,6 @@ import {LoginComponent} from './login/login.component.js';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NgIf } from '@angular/common';
 import { JWTService } from './services/jwt.service.js';
-import { AuthService } from './services/auth.service.js';
 import { jwtDecode } from 'jwt-decode';
 import { UserService } from './services/user.service.js';
 import { UserComponent } from './user/user.component.js';
@@ -23,13 +22,13 @@ import { UserComponent } from './user/user.component.js';
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
-  constructor(private userService: UserService,private jwtService: JWTService, public authService: AuthService) {}
+  constructor(public jwtService: JWTService) {}
 
   readonly dialog = inject(MatDialog)
 
   arr = [
     {link: "Contacto", route: ""},
-    {link: "Mis entradas", route: ""},
+    {link: "Mis entradas", route: "/purchases"},
     {link: "Crear evento", route: "/manageevent"}
   ]
   activeLink = this.arr[0].link;
@@ -41,18 +40,16 @@ export class AppComponent {
       let decodedToken: any = jwtDecode(token)
       let isTokenExpired: boolean = decodedToken.exp * 1000 < Date.now()
       if (!isTokenExpired){
-        this.userService.getUserById(decodedToken.id).subscribe(
-          res => {this.authService.currentUserSig.set(res); console.log(res)})
+        this.jwtService.setCurrentUser(decodedToken)
       }
       else {
-        this.jwtService.destroyToken()
-        this.authService.currentUserSig.set(null)
+        this.jwtService.unloadUser()
       }
     }
   }
 
     openLogin() {
-      const dialogRef = this.dialog.open(LoginComponent, {height: '100%', width: '50%',});
+      const dialogRef = this.dialog.open(LoginComponent, {height: '80%', width: '50%',});
 
       dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);

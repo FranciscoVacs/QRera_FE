@@ -5,7 +5,7 @@
 <p class="content">{{eventInput.event_description}} </p>
 <p class="content">{{eventInput.begin_datetime}}</p>
 </a>
-<div id="i">
+<div id="i" *ngIf="jwtService.currentUserSig()?.isAdmin">
   <button class="optButton" >
     <mat-icon (click)="onDelete()" class="material-symbols-outlined">delete</mat-icon>
   </button>
