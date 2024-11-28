@@ -1,6 +1,6 @@
 <form class="form">
   <div id="searchBar">
-  <mat-form-field appearance="outline" class="full-width">
+  <mat-form-field id="asd" appearance="outline" class="full-width">
     <input (keyup.enter)="onSearchPrompted()" type="text" placeholder="Buscar..."  matInput [formControl]="myControl"
       [matAutocomplete]="auto">
     <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete" (optionSelected)="onOptionSelected($event)">

@@ -1,10 +1,10 @@
 <a (click)=onClicked()>
-<mat-card class="example-card" appearance="outlined">
+<mat-card class="event-card" appearance="outlined">
   <mat-card-header>
     <mat-card-title>{{eventInput.event_name}}</mat-card-title>
     <mat-card-subtitle>{{eventInput.begin_datetime}}</mat-card-subtitle>
   </mat-card-header>
-  <img [src]="eventInput.cover_photo">
+  <img id="eventImg" [src]="eventInput.cover_photo">
   <mat-card-content>
     <p >{{eventInput.event_description}} </p>
   </mat-card-content>

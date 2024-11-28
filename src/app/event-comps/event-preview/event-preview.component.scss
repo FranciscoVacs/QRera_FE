@@ -1,36 +1,15 @@
-.eventimg {
-  width: 100%;
-  height: 25rem;
+#eventImg{
+  height: 30rem;
 }
 
-hr {
-  margin: 0;
-}
-
-h1 {
-  margin: .5rem 0;
-}
-
-p {
-  margin: 0.4rem 0;
-}
-
-.optButton {
-  float: right;
-}
-
-#i {
-  padding-right: 0.5rem;
-}
-
-.example-card {
+.event-card {
   border: 1px solid #ccc;
   border-radius: 8px;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   cursor: pointer;
 }
 
-.example-card:hover {
+.event-card:hover {
   transform: scale(1.05);
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
