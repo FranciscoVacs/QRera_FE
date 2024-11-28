@@ -5,11 +5,13 @@ import {MatButtonModule} from '@angular/material/button';
 import { EventService } from '../../services/event.service.js';
 import { NgIf } from '@angular/common';
 import { JWTService } from '../../services/jwt.service.js';
+import {MatCardModule} from '@angular/material/card';
+import { MatIcon } from '@angular/material/icon';
 
 @Component({
   selector: 'app-event-preview',
   standalone: true,
-  imports: [NgIf, MatIconModule, MatButtonModule],
+  imports: [NgIf, MatIconModule, MatButtonModule, MatCardModule, MatIcon],
   templateUrl: './event-preview.component.html',
   styleUrl: './event-preview.component.scss'
 })

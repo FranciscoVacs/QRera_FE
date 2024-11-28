@@ -97,8 +97,8 @@
   <div id="tTypeManager">
   <h3>Tipos de ticket</h3>
   <app-manage-tickettypes [tickettypes]="event? event.ticketType : []" (ticketListEvent)="updateTicketList($event)"></app-manage-tickettypes>
-  <br>
   <div>
+  <br>
   <button id="submitEventButton" mat-raised-button type="submit" [disabled]="!eventForm.valid">
   Cargar
   </button>

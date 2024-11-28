@@ -84,11 +84,13 @@ export class LoginComponent {
   login(){
     this.userService.logUser({"email": this.email, "password": this.password}).pipe(
       catchError(err => 
-        {return of({error: err})}
+        {return of({error: err.error})}
         ))
       .subscribe((res: any) => {
         if (res.error){
-          this.feedback = res.error.error.message}
+          if (res.error[0]){this.feedback = res.error[0].message}
+          else {this.feedback = res.error.message}
+        }
         else {
           let token: string = res.headers.get('token')
           let decodedToken: any = jwtDecode(token)

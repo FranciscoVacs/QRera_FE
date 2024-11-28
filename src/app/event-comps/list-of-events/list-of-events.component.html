@@ -1,5 +1,7 @@
-<section id="events">
+<div class="container"><section id="events">
   <app-event-preview [eventInput]="event" 
-    *ngFor="let event of eventList; index as i; last as isLast; even as isEven" [class.lastEvent]="isLast && isEven"
+    *ngFor="let event of eventList; index as i; last as isLast; even as isEven" 
+    [class.lastEvent]="isLast && isEven" 
+    [class.oddEvent]="isEven"  
     class="event"></app-event-preview>
-</section>
+</section></div>

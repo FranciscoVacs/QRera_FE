@@ -2,6 +2,7 @@ import { Component, Input } from '@angular/core';
 import { EventPreviewComponent } from '../event-preview/event-preview.component.js';
 import {CommonModule} from '@angular/common';
 
+
 @Component({
   selector: 'app-list-of-events',
   standalone: true,
@@ -11,7 +12,6 @@ import {CommonModule} from '@angular/common';
 })
 export class ListOfEventsComponent {
   constructor(){}
-
 
   @Input() eventList: any = [];
 }

@@ -16,7 +16,7 @@ export class UserService {
 
   getUserPurchases(id: number){
     return this.apiService.get('/user/tickets' + `/${id}`).pipe(
-      map((response: any) => response))
+      map((response: any) => response.data ))
   }
 
   registerUser(user: any){
