@@ -1,29 +1,29 @@
-/* Contenedor principal para el texto y la barra de búsqueda */
+
 .search-container {
   display: flex;
-  flex-direction: column; /* Alinea los elementos en columna */
-  align-items: center; /* Centra los elementos horizontalmente */
-  justify-content: center; /* Centra los elementos verticalmente */
-  position: absolute; /* Posición absoluta para centrar en toda la pantalla */
-  top: 50%; /* Ubica el contenedor verticalmente en el medio */
-  left: 50%; /* Centra horizontalmente */
-  transform: translate(-50%, -50%); /* Ajuste para un centro perfecto */
+  flex-direction: column; 
+  align-items: center; 
+  justify-content: center; 
+  position: absolute;
+  top: 50%; 
+  left: 50%; 
+  transform: translate(-50%, -50%); 
   width: 100%;
   text-align: center;
-  z-index: 1000; /* Asegura que esté por encima de otros elementos */
+  z-index: 1000; 
 }
 
-/* Estilo para el texto que está encima de la barra de búsqueda */
+
 .search-title {
   font-size: 2rem;
   color: rgb(0, 0, 0);
-  margin-bottom: 1rem; /* Espacio entre el texto y la barra de búsqueda */
+  margin-bottom: 1rem; 
 }
 
-/* Estilo para el componente de búsqueda */
+
 app-autocomplete {
-  margin-top: 1rem; /* Asegura que la barra de búsqueda esté directamente debajo del texto */
-  z-index: 1000; /* Asegura que el componente de búsqueda esté por encima de otros elementos */
+  margin-top: 1rem; 
+  z-index: 1000; 
 }
 
 #main {
@@ -61,34 +61,13 @@ footer section {
 }
 
 
-/**
-app-event-preview.event:hover {
-  animation-name: zoomin;
-  animation-duration: .75s;
-  animation-fill-mode: forwards;
-}
-
-@keyframes zoomin {
-  from {
-    width: 45%;
-    height: 33rem;
-  }
-
-  to {
-    width: 50%;
-    height: 36rem;
-  }
-}
-
-**/
-
 .full-screen-container {
   width: 100vw;
-  /* Full viewport width */
+
   height: 100vh;
-  /* Full viewport height */
+
   overflow: hidden;
-  /* Ensure any overflow is hidden */
+  
   position: relative;
 }
 
@@ -96,10 +75,10 @@ app-event-preview.event:hover {
   --position: 1;
   display: flex;
   width: calc(100vw );
-  /* Adjust based on the number of images */
+ 
   height: 100%;
   animation: slide 150s infinite;
-  /* Adjust the duration as needed */
+
 }
 
 .slideshow img {
@@ -109,10 +88,10 @@ app-event-preview.event:hover {
     flex-shrink: 0;
   filter: brightness(35%)
 
-  /* Background image stays behind other content */
+ 
 }
 
-/* Centered search bar */
+
 #searchBar {
   display: flex;
   justify-content: center;
@@ -120,11 +99,11 @@ app-event-preview.event:hover {
   height: 100vh;
   width: 100vw;
   position: absolute;
-  /* Ensures overlay on top of the image */
+
   top: 0;
   left: 0;
   z-index: 1000;
-  /* Ensures it's above the image */
+
 }
 
 @keyframes slide {
@@ -309,5 +288,5 @@ app-event-preview.event:hover {
 
 
   
-  /* Adjust for 20 images (n-1 * -100%) */
+ 
 }
