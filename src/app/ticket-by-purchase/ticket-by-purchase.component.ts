@@ -39,7 +39,7 @@ async downloadTicketPDF(ticketId: number) {
 
     const link = document.createElement('a');
     link.href = window.URL.createObjectURL(blob);
-    link.download = `ticket_${this.purchaseId}.pdf`;
+    link.download = `ticket_${ticketId}.pdf`;
     link.click();
   } catch (error) {
     console.error('Failed to download PDF', error);
