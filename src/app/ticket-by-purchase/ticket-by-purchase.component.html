@@ -1,20 +1,19 @@
 <br>
 <div id="cardContainer">
-<mat-card *ngFor="let ticket of tickets" class="ticket-card" appearance="outlined">
+<mat-card *ngFor="let ticket of tickets; index as i" class="ticket-card" appearance="outlined">
   <mat-card-header>
-    <div mat-card-avatar class="example-header-image"></div>
-    <mat-card-title>Bohemia</mat-card-title>
-    <mat-card-subtitle>Ticket</mat-card-subtitle>
+
+    <mat-card-title>{{purchase.ticket_type.event.event_name}}</mat-card-title>
+    <mat-card-subtitle>{{purchase.ticket_type.event.begin_datetime}}</mat-card-subtitle>
+    <mat-card-subtitle>Ticket {{i+1}}</mat-card-subtitle>
   </mat-card-header>
   <mat-card-content>
     <p>
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla tincidunt felis a est varius, quis iaculis urna
-      tincidunt. Etiam condimentum ultricies lacus, quis blandit libero accumsan eget. Duis dolor tortor, dignissim sed
-      facilisis ut, molestie a tellus. Vivamus tincidunt iaculis augue maximus mollis.
+      {{purchase.ticket_type.event.event_description}}
     </p>
   </mat-card-content>
   <mat-card-actions>
-    <button mat-button>DESCARGAR PDF</button>
+    <button (click)="downloadTicketPDF(ticket.id)" mat-button>DESCARGAR PDF</button>
   </mat-card-actions>
 </mat-card>
 </div>

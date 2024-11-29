@@ -55,7 +55,6 @@ export class LoginComponent {
 
   register(){
     let formattedDate: string = this.dateService.formatDateTime(this.registerForm.value.birth_date,'00','00')
-    console.log(this.registerForm.value.email)
     let newUser = {
       "email" : this.registerForm.value.email,
       "user_name" : this.registerForm.value.user_name,

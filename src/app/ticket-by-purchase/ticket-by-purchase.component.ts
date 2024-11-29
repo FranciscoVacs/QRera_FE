@@ -5,6 +5,7 @@ import { JWTService } from '../services/jwt.service.js';
 import { ActivatedRoute, Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { NgFor } from '@angular/common';
+import { PurchaseService } from '../services/purchase.service.js';
 
 @Component({
   selector: 'app-ticket-by-purchase',
@@ -15,8 +16,9 @@ import { NgFor } from '@angular/common';
 })
 export class TicketByPurchaseComponent {
 
-  constructor(private http: HttpClient, private route: ActivatedRoute ,private router: Router, private jwtService: JWTService){}
-  tickets = [0,1,2]
+  constructor(private purchaseService: PurchaseService, private http: HttpClient, private route: ActivatedRoute ,private router: Router, private jwtService: JWTService){}
+  tickets: any[] = []
+  purchase: any
   purchaseId: number = 0
 
   ngOnInit(){
@@ -25,12 +27,14 @@ export class TicketByPurchaseComponent {
     }
     this.route.params.subscribe(params => {
     this.purchaseId = params['purchaseID'];
+    this.purchaseService.getPurchaseById(this.purchaseId)
+    .subscribe(res => {this.purchase = res; this.tickets = res.ticket})
     })
   }
 
 async downloadTicketPDF(ticketId: number) {
   try {
-    const response = await fetch(`http://localhost:3000/api/${this.purchaseId}/ticket/${ticketId}`);
+    const response = await fetch(`http://localhost:3000/api/purchase/${this.purchaseId}/ticket/${ticketId}`);
     const blob = await response.blob();
 
     const link = document.createElement('a');

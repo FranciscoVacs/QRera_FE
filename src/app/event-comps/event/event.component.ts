@@ -60,23 +60,20 @@ export class EventComponent {
 
   optSelected() {
     this.selectedTicketType = this.firstFormGroup.value.firstCtrl
-    console.log(this.selectedTicketType)  
   }
 
   amountSelected(){
     this.ticketAmount = this.secondFormGroup.value.secondCtrl
-    console.log(this.ticketAmount)
   }
 
   checkUserData(){
-    /* Revisar si user esta logeado o no. Si no lo esta poner componente de login que tenga boton de crear cuenta*/
     if (this.jwtService.getToken()){
       this.purchaseService.postPurchase(
         {
           ticketType_id: this.selectedTicketType.id, 
           ticket_quantity: this.ticketAmount, 
           user_id: this.jwtService.currentUserSig().id
-        }).subscribe(res => console.log(res))
+        }).subscribe(res => res)
     }
     else {
       this.openLogin()
