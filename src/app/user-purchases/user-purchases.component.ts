@@ -20,7 +20,7 @@ export class UserPurchasesComponent {
   readonly dialog = inject(MatDialog)
   
   loginPrompt: boolean = false
-  purchases : { cover_photo: string, event_name: string, event_date: string, ticketAmount: string, ticketTypeName: string}[] = []
+  purchases : { cover_photo: string, event_name: string, event_date: string, ticketAmount: string, ticketTypeName: string, purchaseId: number}[] = []
 
   ngOnInit(){
     if(this.jwtService.getToken() !== null){
@@ -34,6 +34,7 @@ export class UserPurchasesComponent {
             event_date : purchase.ticket_type.event.begin_datetime,
             ticketAmount : purchase.ticket_numbers,
             ticketTypeName : purchase.ticket_type.ticketType_name,
+            purchaseId: purchase.id
           })
         })
       })
@@ -43,8 +44,8 @@ export class UserPurchasesComponent {
     }
   }
 
-  onPurchaseClicked(){
-    setTimeout(()=> this.router.navigate([`tickets`, {purchaseID: ''}]));
+  onPurchaseClicked(id: number){
+    setTimeout(()=> this.router.navigate([`tickets`, {purchaseID: id}]));
   }
 
   openLogin() {

@@ -2,7 +2,7 @@
 
 <div *ngIf="!loginPrompt">
   <h1 id="purchaseHeader"> Tus compras</h1>  
-  <div (click)="onPurchaseClicked()" *ngFor="let purchase of purchases">
+  <div (click)="onPurchaseClicked(purchase.purchaseId)" *ngFor="let purchase of purchases">
     <div class="purchaseContainer">
       <img class="eventimg" [src]="purchase.cover_photo">
       <div class="purchaseData" >
@@ -12,5 +12,6 @@
         <h2>{{purchase.ticketAmount}}</h2>
       </div>
     </div>
+    <br>
   </div>
 </div>

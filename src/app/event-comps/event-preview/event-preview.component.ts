@@ -24,14 +24,16 @@ export class EventPreviewComponent {
     setTimeout(()=> this.router.navigate([`event`, {eventID: this.eventInput.id}]));
   }
 
-  onDelete(){
+  onDelete(event: Event){
+    event.stopPropagation()
     this.eventService.deleteEvent(this.eventInput.id)
     .subscribe(response => {
     alert("Evento eliminado")
     })
   }
 
-  onUpdate(){
+  onUpdate(event: Event){
+    event.stopPropagation()
     setTimeout(()=> this.router.navigate([`manageevent`, {updating: true, eventID: this.eventInput.id}]));
   }
 }

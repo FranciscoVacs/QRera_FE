@@ -1,7 +1,10 @@
-<div id="main">
-<app-autocomplete [locationList]="locationList">
-</app-autocomplete>
+<div class="full-screen-container">
+  <div class="slideshow">
+  <img loading="lazy" *ngFor="let image of images" [src]="image" alt="Background photo">  </div>
+  <app-autocomplete id="searchBar" [locationList]="locationList">
+  </app-autocomplete>
 </div>
+<br>
 <app-list-of-events [eventList]="eventList"></app-list-of-events>
 <footer>
   <section>

@@ -1,5 +1,6 @@
 <br>
-<mat-card class="example-card" appearance="outlined">
+<div id="cardContainer">
+<mat-card *ngFor="let ticket of tickets" class="ticket-card" appearance="outlined">
   <mat-card-header>
     <div mat-card-avatar class="example-header-image"></div>
     <mat-card-title>Bohemia</mat-card-title>
@@ -13,7 +14,7 @@
     </p>
   </mat-card-content>
   <mat-card-actions>
-    <button mat-button>LIKE</button>
-    <button mat-button>SHARE</button>
+    <button mat-button>DESCARGAR PDF</button>
   </mat-card-actions>
 </mat-card>
+</div>

@@ -1,5 +1,5 @@
-<a (click)=onClicked()>
-<mat-card class="event-card" appearance="outlined">
+
+<mat-card (click)=onClicked() class="event-card" appearance="outlined">
   <mat-card-header>
     <mat-card-title>{{eventInput.event_name}}</mat-card-title>
     <mat-card-subtitle>{{eventInput.begin_datetime}}</mat-card-subtitle>
@@ -11,12 +11,11 @@
   <mat-card-actions>
     <div *ngIf="jwtService.currentUserSig()?.isAdmin">
       <button mat-icon-button>
-        <mat-icon (click)="onUpdate()" class="material-symbols-outlined">cached</mat-icon>
+        <mat-icon (click)="onUpdate($event)" class="material-symbols-outlined">cached</mat-icon>
       </button>
       <button mat-icon-button>
-          <mat-icon (click)="onDelete()" class="material-symbols-outlined">delete</mat-icon>
+          <mat-icon (click)="onDelete($event)" class="material-symbols-outlined">delete</mat-icon>
         </button>
     </div>
   </mat-card-actions>
 </mat-card>
-</a>
