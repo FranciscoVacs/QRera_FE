@@ -73,7 +73,7 @@ export class EventComponent {
           ticketType_id: this.selectedTicketType.id, 
           ticket_quantity: this.ticketAmount, 
           user_id: this.jwtService.currentUserSig().id
-        }).subscribe(res => res)
+        }).subscribe((res:any) => {console.log(res);  alert('Compra realizada. Cantidad de tickets: ' + res.data.ticket_numbers)})
     }
     else {
       this.openLogin()

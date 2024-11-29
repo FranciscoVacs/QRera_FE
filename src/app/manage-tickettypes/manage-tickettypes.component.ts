@@ -21,6 +21,7 @@ export class ManageTickettypesComponent {
   
   readonly panelOpenState = signal(false);
   @Input() tickettypes: any[] = [];
+  newTicketTypes: any[] = []
   isFormActivated: boolean = false;
   @Input() isEditable: boolean = true;
   @Output() ticketListEvent = new EventEmitter<any>();
@@ -51,11 +52,13 @@ export class ManageTickettypesComponent {
       "price": price,
       "max_quantity": this.tickettypeForm.value.max_quantity
     }
-    this.tickettypes.push(tickettype)
+    this.newTicketTypes.push(tickettype)
+    if (this.tickettypes){
+    this.tickettypes.push(tickettype)}
     this.sendTicketList()
   }
 
   sendTicketList(){
-    this.ticketListEvent.emit(this.tickettypes)
+    this.ticketListEvent.emit(this.newTicketTypes)
   }
 }

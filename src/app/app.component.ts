@@ -27,7 +27,7 @@ export class AppComponent {
   readonly dialog = inject(MatDialog)
 
   arr = [
-    {link: "Contacto", route: ""},
+    {link: "Eventos", route: ""},
     {link: "Mis entradas", route: "/purchases"},
     {link: "Crear evento", route: "/manageevent"}
   ]

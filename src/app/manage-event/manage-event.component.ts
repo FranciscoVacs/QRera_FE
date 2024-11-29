@@ -43,7 +43,7 @@ export class ManageEventComponent {
   hours: string[] = ['00','01','02','03','04','05','06','07','08','09','10','11','12','13','14','15','16','17','18','19','20','21','22','23']
   minutes: string[] = ['00', '05', '10', '15', '20', '25', '30', '35', '40', '45', '50', '55']
   event: any;
-  postedEvent:any;
+  newEvent:any;
   ticketList: any;
   locationList: any;
   djList: any;
@@ -139,28 +139,30 @@ export class ManageEventComponent {
 
     if (this.updating){
       this.eventService.updateEvent(formdata, this.eventID).subscribe
-      (res => {alert('Evento actualizado con éxito')}) 
+      (updatedEvent => {
+        this.postTicketTypes('actualizado', this.eventID)  
+      }) 
     }
     else {
       this.eventService.postEvent(formdata).subscribe
       (postedEvent=> 
         {
-        this.postedEvent = postedEvent; 
-        this.postTicketTypes()
+        this.postTicketTypes('cargado', postedEvent.id)
+
       }) 
     } 
   }
 
-  postTicketTypes(){
+  postTicketTypes(loadOrUpdate:string, id: number){
       
       this.ticketList.forEach((ticket: any, index: number) => {
       ticket.begin_datetime = this.dateService.formatDateTime(ticket.begin_datetime, '00', '00')
       ticket.finish_datetime = this.dateService.formatDateTime(ticket.finish_datetime, '00', '00')
-      ticket.event = this.postedEvent.id;
-      this.ticketTypeService.postTicketType(ticket, this.postedEvent.id).subscribe
+      ticket.event = id;
+      this.ticketTypeService.postTicketType(ticket, id).subscribe
       (ticketType => 
         { 
-          if (index+1===this.ticketList.length){alert('Evento cargado con éxito')}
+          if (index+1===this.ticketList.length){if(loadOrUpdate){alert(`Evento ${loadOrUpdate} con éxito`)}}
         })
       });
   }

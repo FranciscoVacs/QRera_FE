@@ -7,6 +7,7 @@ import { EventsByLocationComponent } from './event-comps/events-by-location/even
 import { EventsByCityComponent } from './event-comps/events-by-city/events-by-city.component.js';
 import { UserPurchasesComponent } from './user-purchases/user-purchases.component.js';
 import { TicketByPurchaseComponent } from './ticket-by-purchase/ticket-by-purchase.component.js';
+import { AdminComponent } from './admin/admin.component.js';
 
 export const routes: Routes = [
   {path: '', title: 'Home',component: HomeComponent},
@@ -16,5 +17,6 @@ export const routes: Routes = [
   {path: 'city', title: 'Eventos por ciudad', component: EventsByCityComponent}, 
   {path: 'purchases', title: 'Mis compras', component: UserPurchasesComponent},
   {path: 'tickets', title: 'Mis entradas', component: TicketByPurchaseComponent},
+  {path: 'admin', title: 'Admin', component: AdminComponent},
   {path: '**', component: HomeComponent},
 ];

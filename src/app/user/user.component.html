@@ -19,5 +19,6 @@
     <h2>Fecha de nacimiento</h2>
     <h2>{{jwtService.currentUserSig()?.birth_date}}</h2>
     <br>
+    <button *ngIf="jwtService.currentUserSig()?.isAdmin" class="actionButton" [routerLink]="'admin'" (click)="closeDialog()" mat-raised-button> Administrar entidades </button>
     <button class="actionButton" (click)="logout()" mat-raised-button> Cerrar sesión </button>
   </mat-dialog-content>
