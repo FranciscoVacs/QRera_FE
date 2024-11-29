@@ -17,12 +17,11 @@ export class EventService {
   getEventById(id: number) {
     return this.apiService.get(`/event` + `/${id}`)
     .pipe(map((response: any) => response.data))
-    ;
   }
   postEvent(event: any) {
     return this.apiService.post(`/event`, event)
     .pipe(map((response: any) => response.data))
-    ;
+
   }
 
   updateEvent(event: any, id: number) {

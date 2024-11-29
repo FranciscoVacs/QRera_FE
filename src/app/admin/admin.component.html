@@ -1,33 +1,167 @@
 <h1 class="title" >Administrador de entidades</h1>
 
 <h1 class="title"></h1>
+<div class="CRUD"> 
+  <h1 class="title"> CITY </h1>
+  <div *ngIf="cityOption===0">
+    <button class="actionButton" (click)="cityOption=1" mat-raised-button> Create </button>
+    <button class="actionButton" (click)="cityOption=2" mat-raised-button> Read </button>
+    <button class="actionButton" (click)="cityOption=3" mat-raised-button> Update </button>
+    <button class="actionButton" (click)="cityOption=4" mat-raised-button> Delete </button>
+  </div>
+  <div *ngIf="cityOption===1">
+    <form [formGroup]="cityFormGroup" (ngSubmit)="loadCity()">
+    <mat-form-field>
+      <mat-label>Nombre</mat-label>
+      <input  matInput formControlName="city_name" />
+    </mat-form-field>
 
-<div *ngIf="option===1">
-  <mat-form-field>
-    <mat-label>Precio</mat-label>
-    <input type="number" matInput formControlName="price" />
-  </mat-form-field>
+    <mat-form-field>
+      <mat-label>Provincia</mat-label>
+      <input  matInput formControlName="province" />
+    </mat-form-field>
 
-  <mat-form-field>
-    <mat-label>Precio</mat-label>
-    <input type="number" matInput formControlName="price" />
-  </mat-form-field>
+    <mat-form-field>
+      <mat-label>Código postal</mat-label>
+      <input type="number" matInput formControlName="zip_code" />
+    </mat-form-field>
+    <button mat-stroked-button type="submit">
+      Cargar 
+    </button>
+    </form>
+  </div>
 
-  <mat-form-field>
-    <mat-label>Precio</mat-label>
-    <input type="number" matInput formControlName="price" />
-  </mat-form-field>
+  <div *ngIf="cityOption===2">
+    <mat-form-field>
+      <mat-label>ID de entidad</mat-label>
+      <input type="number" matInput [formControl]="getcitybyid" />
+    </mat-form-field>
+      <button mat-stroked-button (click)="getcity()">
+        GET
+      </button>
+    <p> {{actualCity.city_name}}</p>
+    <p>{{actualCity.province}}</p>
+    <p>{{actualCity.zip_code}}</p>
+  </div>
 
+  <div *ngIf="cityOption===3">
+    <mat-form-field>
+      <mat-label>ID de entidad</mat-label>
+      <input type="number" matInput [formControl]="getcitybyid" />
+    </mat-form-field>
+    <form [formGroup]="cityFormGroup">
+      <mat-form-field>
+        <mat-label>Nombre</mat-label>
+        <input matInput formControlName="city_name" />
+      </mat-form-field>
+    
+      <mat-form-field>
+        <mat-label>Provincia</mat-label>
+        <input matInput formControlName="province" />
+      </mat-form-field>
+    
+      <mat-form-field>
+        <mat-label>Código postal</mat-label>
+        <input type="number" matInput formControlName="zip_code" />
+      </mat-form-field>
+      <button mat-stroked-button (click)="updatecity()">
+        UPDATE
+      </button>
+    </form>
+  </div>
+
+  <div *ngIf="cityOption===4">
+    <mat-form-field>
+      <mat-label>ID de entidad</mat-label>
+      <input type="number" matInput [formControl]="getdjbyid" />
+    </mat-form-field>
+      <button mat-stroked-button (click)="deletecity()">
+        DELETE
+      </button>
+  </div>
+  <br>
+  <button *ngIf="check(cityOption)" mat-raised-button (click)="cityOption=0"> Volver </button>
 </div>
 
-<div *ngIf="option===2">
+  <div class="CRUD">
+  <h1 class="title"> DJ </h1>
+  <div *ngIf="djOption===0">
+        <button class="actionButton" (click)="djOption=1" mat-raised-button> Create </button>
+        <button class="actionButton" (click)="djOption=2" mat-raised-button> Read </button>
+        <button class="actionButton" (click)="djOption=3" mat-raised-button> Update </button>
+        <button class="actionButton" (click)="djOption=4" mat-raised-button> Delete </button>        
+  </div>
+  <div *ngIf="djOption===1">
+    <form [formGroup]="djFormGroup" (ngSubmit)="loaddj()">
+    <mat-form-field>
+      <mat-label>Nombre</mat-label>
+      <input  matInput formControlName="dj_name" />
+    </mat-form-field>
 
-</div>
+    <mat-form-field>
+      <mat-label>Apellido</mat-label>
+      <input  matInput formControlName="dj_surname" />
+    </mat-form-field>
 
-<div *ngIf="option===3">
+    <mat-form-field>
+      <mat-label>Apodo</mat-label>
+      <input  matInput formControlName="dj_apodo" />
+    </mat-form-field>
+    <button mat-stroked-button>
+      Cargar
+    </button>
+    </form>
+  </div>
 
-</div>
+  <div *ngIf="djOption===2">
+    <mat-form-field>
+      <mat-label>ID de entidad</mat-label>
+      <input type="number" matInput [formControl]="getdjbyid"/>
+    </mat-form-field>
+      <button mat-stroked-button (click)="getdj()">
+        GET
+      </button>
+    <p> {{actualdj.dj_name}}</p>
+    <p>{{actualdj.dj_surname}}</p>
+    <p>{{actualdj.dj_apodo}}</p>
+  </div>
 
-<div *ngIf="option===4">
+  <div *ngIf="djOption===3">
+    <mat-form-field>
+      <mat-label>ID de entidad</mat-label>
+      <input type="number" matInput [formControl]="getdjbyid" />
+    </mat-form-field>
 
+    <form [formGroup]="djFormGroup" >
+      <mat-form-field>
+        <mat-label>Nombre</mat-label>
+        <input matInput formControlName="dj_name" />
+      </mat-form-field>
+    
+      <mat-form-field>
+        <mat-label>Apellido</mat-label>
+        <input matInput formControlName="dj_surname" />
+      </mat-form-field>
+    
+      <mat-form-field>
+        <mat-label>Apodo</mat-label>
+        <input matInput formControlName="dj_apodo" />
+      </mat-form-field>
+      <button mat-stroked-button (click)="updatedj()">
+        UPDATE
+      </button>
+    </form>
+  </div>
+
+  <div *ngIf="djOption===4">
+    <mat-form-field>
+      <mat-label>ID de entidad</mat-label>
+      <input type="number" matInput [formControl]="getdjbyid" />
+    </mat-form-field>
+      <button mat-stroked-button (click)="deletedj()">
+        DELETE
+      </button>
+  </div>
+  <br>
+  <button *ngIf="check(djOption)" mat-raised-button  (click)="djOption=0"> Volver </button>
 </div>
