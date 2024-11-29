@@ -3,7 +3,11 @@
 <h1 class="title"></h1>
 <div class="CRUD"> 
   <h1 class="title"> CITY </h1>
+
   <div *ngIf="cityOption===0">
+  <br>
+  <h3>ID actuales: <span *ngFor="let city of citiesIDs">{{city}}, </span></h3>
+  <br>
     <button class="actionButton" (click)="cityOption=1" mat-raised-button> Create </button>
     <button class="actionButton" (click)="cityOption=2" mat-raised-button> Read </button>
     <button class="actionButton" (click)="cityOption=3" mat-raised-button> Update </button>
@@ -26,7 +30,7 @@
       <input type="number" matInput formControlName="zip_code" />
     </mat-form-field>
     <button mat-stroked-button type="submit">
-      Cargar 
+      POST 
     </button>
     </form>
   </div>
@@ -73,7 +77,7 @@
   <div *ngIf="cityOption===4">
     <mat-form-field>
       <mat-label>ID de entidad</mat-label>
-      <input type="number" matInput [formControl]="getdjbyid" />
+      <input type="number" matInput [formControl]="getcitybyid" />
     </mat-form-field>
       <button mat-stroked-button (click)="deletecity()">
         DELETE
@@ -86,6 +90,9 @@
   <div class="CRUD">
   <h1 class="title"> DJ </h1>
   <div *ngIf="djOption===0">
+  <br>
+  <h3>ID actuales: <span *ngFor="let dj of djIDs">{{dj}}, </span></h3>
+  <br>
         <button class="actionButton" (click)="djOption=1" mat-raised-button> Create </button>
         <button class="actionButton" (click)="djOption=2" mat-raised-button> Read </button>
         <button class="actionButton" (click)="djOption=3" mat-raised-button> Update </button>
@@ -108,7 +115,7 @@
       <input  matInput formControlName="dj_apodo" />
     </mat-form-field>
     <button mat-stroked-button>
-      Cargar
+      POST
     </button>
     </form>
   </div>
@@ -121,7 +128,7 @@
       <button mat-stroked-button (click)="getdj()">
         GET
       </button>
-    <p> {{actualdj.dj_name}}</p>
+    <p>{{actualdj.dj_name}}</p>
     <p>{{actualdj.dj_surname}}</p>
     <p>{{actualdj.dj_apodo}}</p>
   </div>
