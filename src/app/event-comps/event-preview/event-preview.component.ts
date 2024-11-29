@@ -27,9 +27,10 @@ export class EventPreviewComponent {
   onDelete(event: Event){
     event.stopPropagation()
     this.eventService.deleteEvent(this.eventInput.id)
-    .subscribe(response => {
-    alert("Evento eliminado")
-    })
+    .subscribe({
+        next: (value) => {alert("Evento eliminado")},
+        error: (err) => {if(err.status===500)alert('Este evento tiene compras asociadas y no puede ser eliminado directamente.')}
+  })
   }
 
   onUpdate(event: Event){
